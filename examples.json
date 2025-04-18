@@ -1,0 +1,24 @@
+{
+    "SolNode858": {
+        "InternalName": "SolNode858",
+        "Id": "123",
+        "MasteryExp": 0,
+        "Planet": "Deimos",
+        "Introduced": "35",
+        "Enemy": "The Murmur",
+        "PreviousNodes": ["Sanctum Anatomica", "Food", "Stuff"],
+        "IsHidden": true,
+        "Quotes": "Netracells/Quotes",
+        "Type": "Netracells",
+        "RegionResources": ["Nano Spores", "Mutagen Sample", "Orokin Cell", "Neurodes"],
+        "FactionImage": "MurmurIcon.png",
+        "Tileset": "Albrecht's Laboratories",
+        "CreditReward": 22900,
+        "IsDarkSector": true,
+        "Name": "Testudo",
+        "MaxLevel": 240,
+        "MinLevel": 220,
+        "IsTracked": false,
+        "Link": "Testudo"
+        }
+}
