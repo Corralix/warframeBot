@@ -1,4 +1,5 @@
 local MissionData = require('./lua/missionNodeData')
+-- https://wiki.warframe.com/w/Module:Missions/data
 local utils = require('./lua/module/utils')
 
 local nonInternalNames = { "", "ToggleBootLevel" }
