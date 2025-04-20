@@ -21,6 +21,7 @@ function MissionDetails(infoType)
         end
         utils.tableConcat(jsonOutputArray, { '\t', '"', missionName, '"', ':', ' ', '', '{', '\n' })
         table.insert(arrayOfKeys, missionName)
+        ---@diagnostic disable
         for missionKey, missionValue in pairs(mission) do
             BooleanValuePlaceholder = "true"
             -- If the value is a boolean, add it to the string as a string
