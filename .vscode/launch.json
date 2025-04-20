@@ -1,16 +1,29 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "lua",
-            "request": "launch",
-            "name": "lua debug",
-            "program": "${file}",
-            "console": "internalConsole",
-            "stopOnEntry": false,
-        }
-    ]
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "lua",
+			"request": "launch",
+			"name": "Lua",
+			"program": "${file}",
+			"console": "internalConsole",
+			"stopOnEntry": false
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "Discord Bot",
+			"program": "${workspaceFolder}/index.js",
+			"console": "internalConsole",
+			"stopOnEntry": false
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "Deploy Commands",
+			"program": "${workspaceFolder}/deployCommands.js",
+			"console": "internalConsole",
+			"stopOnEntry": false
+		}
+	]
 }
