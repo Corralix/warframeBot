@@ -2,14 +2,14 @@ const { fetchData } = require('../../modules/webSnatcher.mjs');
 const { SlashCommandBuilder } = require('discord.js');
 const MissionDetails = require('../../json/MissionDetails.json');
 
-// async function zarimanBounty() {
+// async function bounty() {
 //     fetchData('https://oracle.browse.wf/bounty-cycle')
 //         .then(data => {
 //             Output = "Zariman Bounties:\n"
-//             zarimanBounty = data["bounties"]["ZarimanSyndicate"]
+//             bounty = data["bounties"]["ZarimanSyndicate"]
         
-//             for (let rank = 0; rank < zarimanBounty.length; rank++) {
-//                 Output += `${rank+1}: ${zarimanBounty[rank]["node"]}, ${zarimanBounty[rank]["challenge"]} \n`
+//             for (let rank = 0; rank < bounty.length; rank++) {
+//                 Output += `${rank+1}: ${bounty[rank]["node"]}, ${bounty[rank]["challenge"]} \n`
 //             }
         
 //             return Output;
@@ -29,14 +29,16 @@ module.exports = {
     async execute(interaction) {
         fetchData('https://oracle.browse.wf/bounty-cycle')
         .then(data => {
-            let Output = "Zariman Bounties:\n";
-            let zarimanBounty = data["bounties"]["ZarimanSyndicate"];
+            let time = data["expiry"];
+            let faction = data["zarimanFaction"];
+            let Output = `Expires in: <t:${time}:t>\n##The Holdfasts:\n###Faction: ${faction}`;
+            let bounty = data["bounties"]["ZarimanSyndicate"];
         
-            for (let rank = 0; rank < zarimanBounty.length; rank++) {
+            for (let rank = 0; rank < bounty.length; rank++) {
 
-                let node = MissionDetails[zarimanBounty[rank]["node"]];
+                let node = MissionDetails[bounty[rank]["node"]];
 
-                Output += `${rank+1}: ${node.Name}, ${zarimanBounty[rank]["challenge"]} \n`;
+                Output += `${rank+1}: ${node.Name}, ${bounty[rank]["challenge"]} \n`;
             }
         
             interaction.reply(Output);
