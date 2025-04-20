@@ -7,8 +7,8 @@
         {
             "type": "lua",
             "request": "launch",
-            "name": "db debug",
-            "program": "${workspaceFolder}/db.lua",
+            "name": "lua debug",
+            "program": "${file}",
             "console": "internalConsole",
             "stopOnEntry": false,
         }

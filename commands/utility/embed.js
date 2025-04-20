@@ -1,7 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js"); // https://discordjs.guide/popular-topics/embeds.html#embed-preview
 
 module.exports = {
-	data: new SlashCommandBuilder().setName("emb").setDescription("Embed example"),
+	data: new SlashCommandBuilder().setName("embed").setDescription("Embed example"),
 	async execute(interaction) {
 		// inside a command, event listener, etc.
 		const exampleEmbed = new EmbedBuilder()
