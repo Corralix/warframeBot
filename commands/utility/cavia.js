@@ -26,7 +26,6 @@ module.exports = {
             
 
             let bounty = data["bounties"][commandDetails.bountyId];
-            console.log(bounty);
 
             let nodeList = [];
             let challengeList = [];
@@ -63,9 +62,9 @@ module.exports = {
             const exampleEmbed = new EmbedBuilder()
                         .setColor(0x0099ff)
                         .setTitle(commandDetails.syndicateNameString)
-                        .setAuthor({ name: "ada", iconURL: "https://i.imgur.com/AfFp7pu.png", url: "https://browse.wf/about" })
+                        .setAuthor({ name: "THE MURMUR", iconURL: "https://wiki.warframe.com/images/MurmurIcon.png?e4daf", url: "https://browse.wf/about" })
                         .setDescription(timeString)
-                        .setThumbnail("https://i.imgur.com/AfFp7pu.png")
+                        .setThumbnail("https://wiki.warframe.com/images/Cavia_Syndicate_Logo_1.png?406b5")
                         .addFields(
                             fieldGenerator(nodeList, challengeList)
                         )

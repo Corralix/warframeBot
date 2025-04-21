@@ -11,6 +11,14 @@ const commandDetails = {
     syndicateNameString: "The Hex"
 }
 
+const allyNames = {
+    "/Lotus/Types/Gameplay/1999Wf/ProtoframeAllies/AmirAllyAgent": "Amir",
+    "/Lotus/Types/Gameplay/1999Wf/ProtoframeAllies/AoiAllyAgent": "Aoi",
+    "/Lotus/Types/Gameplay/1999Wf/ProtoframeAllies/ArthurAllyAgent": "Arthur",
+    "/Lotus/Types/Gameplay/1999Wf/ProtoframeAllies/EleanorAllyAgent": "Eleanor",
+    "/Lotus/Types/Gameplay/1999Wf/ProtoframeAllies/LettieAllyAgent": "Lettie",
+    "/Lotus/Types/Gameplay/1999Wf/ProtoframeAllies/QuincyAllyAgent": "Quincy",
+};
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -26,7 +34,6 @@ module.exports = {
             
 
             let bounty = data["bounties"][commandDetails.bountyId];
-            console.log(bounty);
 
             let nodeList = [];
             let challengeList = [];
@@ -36,24 +43,48 @@ module.exports = {
 
                 let node = MissionDetails[bountyRank["node"]];
 
+                let ally = allyNames[bountyRank["ally"]]
                 let challengePath = Challenges[bountyRank["challenge"]];
                 let challengeDesc = challengePath["description"];
                 let challengeCount = challengePath["requiredCount"];
                 let challengeTranslation = wfDict[challengeDesc];
                 challengeTranslation = challengeTranslation.replace("|COUNT|", `${challengeCount}`);
+                challengeTranslation = challengeTranslation.replace("|ALLY|", `${ally}`);
+                challengeTranslation = challengeTranslation.replace("|OPEN_COLOR|", "");
+                challengeTranslation = challengeTranslation.replace("|CLOSE_COLOR|", "");
 
                 nodeList.push(node)
                 challengeList.push(challengeTranslation);
-
             }
 
-            
+            let displayFaction = "";
+            let factionIcon = {"TECHROT": "https://wiki.warframe.com/images/TechrotIcon.png?09c02","SCALDRA": "https://wiki.warframe.com/images/ScaldraIcon.png?70572"}
+            if (nodeList[nodeList.length-1]["Enemy"] == "Techrot") {
+                displayFaction = "TECHROT";
+            } else {
+                displayFaction = "SCALDRA";
+            }
+
+
             function fieldGenerator(nodeList, challengeList) {
                 let output = "";
-                let rankEmoji = ["\u0031\uFE0F\u20E3", "\u0032\uFE0F\u20E3", "\u0033\uFE0F\u20E3", "\u0034\uFE0F\u20E3", "\u0035\uFE0F\u20E3"];
+                let rankEmoji = ["\u0031\uFE0F\u20E3", "\u0032\uFE0F\u20E3", "\u0033\uFE0F\u20E3", "\u0034\uFE0F\u20E3", "\u0035\uFE0F\u20E3", "\u0036\uFE0F\u20E3", "\u0037\uFE0F\u20E3", "\u0038\uFE0F\u20E3", "\u0039\uFE0F\u20E3"];
 
                 for (let i = 0; i < nodeList.length; i++) {
-                    output += (`${rankEmoji[i]} **${nodeList[i]["Name"]}** (${nodeList[i]["Type"]})\n`)
+                    let nodeFaction = nodeList[i]["Enemy"];
+                    let nodeName = nodeList[i]["Name"];
+                    let nodeType = nodeList[i]["Type"];
+
+                    let enemy = "";
+                    let distinguishNodes = ["Exterminate", "Hell-Scrub"];
+
+                    if (nodeFaction == "Techrot" && distinguishNodes.includes(nodeList[i]["Type"])) {
+                        enemy = "Techrot";
+                    } else if (nodeFaction == "Scaldra" && distinguishNodes.includes(nodeList[i]["Type"])) {
+                        enemy = "Scaldra"
+                    }
+                    
+                    output += (`${rankEmoji[i]} **${nodeName}** (${enemy} ${nodeType})\n`)
                     output += (`${challengeList[i]}\n\n`);
                 }
 
@@ -63,9 +94,9 @@ module.exports = {
             const exampleEmbed = new EmbedBuilder()
                         .setColor(0x0099ff)
                         .setTitle(commandDetails.syndicateNameString)
-                        .setAuthor({ name: "ada", iconURL: "https://i.imgur.com/AfFp7pu.png", url: "https://browse.wf/about" })
+                        .setAuthor({ name: displayFaction, iconURL: factionIcon[displayFaction], url: "https://browse.wf/about" })
                         .setDescription(timeString)
-                        .setThumbnail("https://i.imgur.com/AfFp7pu.png")
+                        .setThumbnail("https://wiki.warframe.com/images/HexIcon.png?c8c7d")
                         .addFields(
                             fieldGenerator(nodeList, challengeList)
                         )
