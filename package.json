@@ -1,5 +1,5 @@
 {
-  "name": "discordbot",
+  "name": "warframe-bot",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,18 +8,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Corralix/discordBot.git"
+    "url": "git+https://github.com/Corralix/warframeBot.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/Corralix/discordBot/issues"
+    "url": "https://github.com/Corralix/warframeBot/issues"
   },
-  "homepage": "https://github.com/Corralix/discordBot#readme",
+  "homepage": "https://github.com/Corralix/warframeBot#readme",
   "dependencies": {
     "discord.js": "^14.18.0",
     "dotenv": "^16.5.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.12.0"
   }
 }
