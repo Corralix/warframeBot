@@ -1,0 +1,385 @@
+{
+	"Solar Rail Junction": {
+		"InternalName": "",
+		"Link": "Junction",
+		"Introduced": "Specters of the Rail",
+		"Name": "Solar Rail Junction",
+		"IsEndless": "false"
+	},
+	"MT_SECTOR": {
+		"Index": "16",
+		"InternalName": "MT_SECTOR",
+		"Introduced": "14",
+		"Link": "Solar Rail Conflict",
+		"Name": "Solar Rail Conflict",
+		"IsEndless": "false"
+	},
+	"MT_ENDLESS_EXTERMINATION": {
+		"InternalName": "MT_ENDLESS_EXTERMINATION",
+		"RewardRotation": "AABC",
+		"Introduced": "22.18",
+		"Link": "Sanctuary Onslaught",
+		"Name": "Sanctuary Onslaught",
+		"IsEndless": "true"
+	},
+	"MT_VOID_CASCADE": {
+		"Index": "34",
+		"InternalName": "MT_VOID_CASCADE",
+		"RewardRotation": "AABC",
+		"Introduced": "31.5",
+		"Link": "Void Cascade",
+		"Name": "Void Cascade",
+		"IsEndless": "true"
+	},
+	"MT_ARENA": {
+		"Index": "22",
+		"InternalName": "MT_ARENA",
+		"Introduced": "18.10",
+		"Link": "Arena",
+		"Name": "Arena",
+		"IsEndless": "false"
+	},
+	"Free Flight": {
+		"InternalName": "",
+		"Link": "Free Flight",
+		"Introduced": "27",
+		"Name": "Free Flight",
+		"IsEndless": "false"
+	},
+	"MT_OFFERING": {
+		"Index": "41",
+		"InternalName": "MT_OFFERING",
+		"Introduced": "37",
+		"Link": "Shrine Defense",
+		"Name": "Shrine Defense",
+		"IsEndless": "false"
+	},
+	"MT_DEFENSE": {
+		"Index": "36",
+		"InternalName": "MT_DEFENSE",
+		"RewardRotation": "AABC",
+		"Introduced": "32.3",
+		"Link": "Mirror Defense",
+		"Name": "Mirror Defense",
+		"IsEndless": "true"
+	},
+	"MT_DEFENSE~Defense": {
+		"Index": "8",
+		"InternalName": "MT_DEFENSE",
+		"RewardRotation": "AABC",
+		"Introduced": "Vanilla",
+		"Link": "Defense",
+		"Name": "Defense",
+		"IsEndless": "true"
+	},
+	"MT_ASSASSINATION": {
+		"Index": "0",
+		"InternalName": "MT_ASSASSINATION",
+		"Introduced": "Vanilla",
+		"Link": "Assassination",
+		"Name": "Assassination",
+		"IsEndless": "false"
+	},
+	"MT_RAILJACK": {
+		"InternalName": "MT_RAILJACK",
+		"Introduced": "27",
+		"Link": "Skirmish",
+		"Name": "Skirmish",
+		"IsEndless": "false"
+	},
+	"MT_INTEL": {
+		"Index": "7",
+		"InternalName": "MT_INTEL",
+		"Introduced": "Vanilla",
+		"Link": "Spy",
+		"Name": "Spy",
+		"IsEndless": "false"
+	},
+	"MT_SABOTAGE": {
+		"Index": "4",
+		"InternalName": "MT_SABOTAGE",
+		"Introduced": "Vanilla",
+		"Link": "Sabotage",
+		"Name": "Sabotage",
+		"IsEndless": "false"
+	},
+	"MT_PVP": {
+		"InternalName": "MT_PVP",
+		"Introduced": "10",
+		"Link": "Conclave",
+		"Name": "Conclave",
+		"IsEndless": "false"
+	},
+	"MT_RESCUE": {
+		"Index": "3",
+		"InternalName": "MT_RESCUE",
+		"Introduced": "Vanilla",
+		"Link": "Rescue",
+		"Name": "Rescue",
+		"IsEndless": "false"
+	},
+	"MT_EVACUATION": {
+		"Index": "27",
+		"InternalName": "MT_EVACUATION",
+		"RewardRotation": "AABC",
+		"Introduced": "19.12",
+		"Link": "Defection",
+		"Name": "Defection",
+		"IsEndless": "true"
+	},
+	"MT_ARTIFACT": {
+		"Index": "32",
+		"InternalName": "MT_ARTIFACT",
+		"RewardRotation": "Unique, see [[Disruption#Rewards]]",
+		"Introduced": "25",
+		"Link": "Disruption",
+		"Name": "Disruption",
+		"IsEndless": "true"
+	},
+	"MT_DEFENSE~Stage Defense": {
+		"Index": "8",
+		"InternalName": "MT_DEFENSE",
+		"RewardRotation": "AABC",
+		"Introduced": "38.5",
+		"Link": "Stage Defense",
+		"Name": "Stage Defense",
+		"IsEndless": "true"
+	},
+	"MT_PVPVE": {
+		"Index": "42",
+		"InternalName": "MT_PVPVE",
+		"Introduced": "38",
+		"Link": "Faceoff",
+		"Name": "Faceoff",
+		"IsEndless": "false"
+	},
+	"Trial": {
+		"InternalName": "",
+		"Introduced": "16",
+		"Link": "Trial",
+		"Name": "Trial",
+		"IsEndless": "false"
+	},
+	"MT_ENDLESS_CAPTURE": {
+		"Index": "40",
+		"InternalName": "MT_ENDLESS_CAPTURE",
+		"RewardRotation": "AABC",
+		"Introduced": "38",
+		"Link": "Legacyte Harvest",
+		"Name": "Legacyte Harvest",
+		"IsEndless": "true"
+	},
+	"MT_TERRITORY": {
+		"Index": "13",
+		"InternalName": "MT_TERRITORY",
+		"RewardRotation": "AABC",
+		"Introduced": "12",
+		"Link": "Interception",
+		"Name": "Interception",
+		"IsEndless": "true"
+	},
+	"Lunaro": {
+		"InternalName": "",
+		"Introduced": "Lunaro",
+		"Link": "Lunaro",
+		"Name": "Lunaro",
+		"IsEndless": "false"
+	},
+	"MT_SURVIVAL": {
+		"Index": "2",
+		"InternalName": "MT_SURVIVAL",
+		"RewardRotation": "AABC",
+		"Introduced": "9.7",
+		"Link": "Survival",
+		"Name": "Survival",
+		"IsEndless": "true"
+	},
+	"MT_EXTERMINATION": {
+		"InternalName": "MT_EXTERMINATION",
+		"RewardRotation": "AABC",
+		"Introduced": "38",
+		"Link": "Hell-Scrub",
+		"Name": "Hell-Scrub",
+		"IsEndless": "true"
+	},
+	"MT_ASCENSION": {
+		"InternalName": "MT_ASCENSION",
+		"Introduced": "36",
+		"Link": "Ascension",
+		"Name": "Ascension",
+		"IsEndless": "false"
+	},
+	"MT_VAULTS": {
+		"InternalName": "MT_VAULTS",
+		"Introduced": "35",
+		"Link": "Netracells",
+		"Name": "Netracells",
+		"IsEndless": "false"
+	},
+	"Cephalon Capture": {
+		"InternalName": "",
+		"Introduced": "16",
+		"Link": "Cephalon Capture",
+		"Name": "Cephalon Capture",
+		"IsEndless": "false"
+	},
+	"MT_EXTERMINATION~Exterminate": {
+		"Index": "1",
+		"InternalName": "MT_EXTERMINATION",
+		"Introduced": "Vanilla",
+		"Link": "Exterminate",
+		"Name": "Exterminate",
+		"IsEndless": "false"
+	},
+	"MT_CORRUPTION": {
+		"Index": "33",
+		"InternalName": "MT_CORRUPTION",
+		"RewardRotation": "AABC",
+		"Introduced": "31.5",
+		"Link": "Void Flood",
+		"Name": "Void Flood",
+		"IsEndless": "true"
+	},
+	"Pursuit": {
+		"Index": "24",
+		"InternalName": "",
+		"Introduced": "Specters of the Rail",
+		"Link": "Pursuit",
+		"Name": "Pursuit",
+		"IsEndless": "false"
+	},
+	"Annihilation": {
+		"InternalName": "",
+		"Introduced": "16",
+		"Link": "Annihilation",
+		"Name": "Annihilation",
+		"IsEndless": "false"
+	},
+	"MT_MOBILE_DEFENSE": {
+		"Index": "9",
+		"InternalName": "MT_MOBILE_DEFENSE",
+		"Introduced": "Vanilla",
+		"Link": "Mobile Defense",
+		"Name": "Mobile Defense",
+		"IsEndless": "false"
+	},
+	"Relay": {
+		"InternalName": "",
+		"Introduced": "15.5.3",
+		"Link": "Relay",
+		"Name": "Relay",
+		"IsEndless": "false"
+	},
+	"Team Annihilation": {
+		"InternalName": "",
+		"Introduced": "16",
+		"Link": "Team Annihilation",
+		"Name": "Team Annihilation",
+		"IsEndless": "false"
+	},
+	"MT_ALCHEMY": {
+		"InternalName": "MT_ALCHEMY",
+		"RewardRotation": "AABC",
+		"Introduced": "35",
+		"Link": "Alchemy",
+		"Name": "Alchemy",
+		"IsEndless": "true"
+	},
+	"MT_ARMAGEDDON": {
+		"Index": "35",
+		"InternalName": "MT_ARMAGEDDON",
+		"RewardRotation": "AABC",
+		"Introduced": "31.5",
+		"Link": "Void Armageddon",
+		"Name": "Void Armageddon",
+		"IsEndless": "true"
+	},
+	"MT_EXCAVATE": {
+		"Index": "17",
+		"InternalName": "MT_EXCAVATE",
+		"RewardRotation": "AABC",
+		"Introduced": "14.5",
+		"Link": "Excavation",
+		"Name": "Excavation",
+		"IsEndless": "true"
+	},
+	"Orphix": {
+		"InternalName": "",
+		"RewardRotation": "AABC",
+		"Introduced": "29.6",
+		"Link": "Orphix (Mission)",
+		"Name": "Orphix",
+		"IsEndless": "true"
+	},
+	"MT_RETRIEVAL": {
+		"Index": "14",
+		"InternalName": "MT_RETRIEVAL",
+		"Introduced": "12.4",
+		"Link": "Hijack",
+		"Name": "Hijack",
+		"IsEndless": "false"
+	},
+	"Hub": {
+		"InternalName": "",
+		"Introduced": "22",
+		"Link": "Hub",
+		"Name": "Hub",
+		"IsEndless": "false"
+	},
+	"MT_LANDSCAPE": {
+		"Index": "28",
+		"InternalName": "MT_LANDSCAPE",
+		"Introduced": "22",
+		"Link": "Open World",
+		"Name": "Free Roam",
+		"IsEndless": "false"
+	},
+	"MT_ASSAULT": {
+		"Index": "26",
+		"InternalName": "MT_ASSAULT",
+		"Introduced": "19",
+		"Link": "Assault",
+		"Name": "Assault",
+		"IsEndless": "false"
+	},
+	"MT_PURIFY": {
+		"Index": "21",
+		"InternalName": "MT_PURIFY",
+		"RewardRotation": "AABC",
+		"Introduced": "19.5",
+		"Link": "Infested Salvage",
+		"Name": "Infested Salvage",
+		"IsEndless": "true"
+	},
+	"MT_RACE": {
+		"Index": "25",
+		"InternalName": "MT_RACE",
+		"Introduced": "Specters of the Rail",
+		"Link": "Rush (Archwing)",
+		"Name": "Rush",
+		"IsEndless": "false"
+	},
+	"Volatile": {
+		"InternalName": "",
+		"Introduced": "29.10",
+		"Link": "Volatile",
+		"Name": "Volatile",
+		"IsEndless": "false"
+	},
+	"MT_DEFENSE~Hive Sabotage": {
+		"Index": "15",
+		"InternalName": "MT_DEFENSE",
+		"Introduced": "13.8",
+		"Link": "Sabotage/Hive",
+		"Name": "Hive Sabotage",
+		"IsEndless": "false"
+	},
+	"MT_CAPTURE": {
+		"Index": "5",
+		"InternalName": "MT_CAPTURE",
+		"Introduced": "Vanilla",
+		"Link": "Capture",
+		"Name": "Capture",
+		"IsEndless": "false"
+	}
+}
