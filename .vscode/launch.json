@@ -1,29 +1,38 @@
 {
-	"version": "0.2.0",
-	"configurations": [
-		{
-			"type": "lua",
-			"request": "launch",
-			"name": "Lua",
-			"program": "${file}",
-			"console": "internalConsole",
-			"stopOnEntry": false
-		},
-		{
-			"type": "node",
-			"request": "launch",
-			"name": "Discord Bot",
-			"program": "${workspaceFolder}/index.js",
-			"console": "internalConsole",
-			"stopOnEntry": false
-		},
-		{
-			"type": "node",
-			"request": "launch",
-			"name": "Deploy Commands",
-			"program": "${workspaceFolder}/deployCommands.js",
-			"console": "internalConsole",
-			"stopOnEntry": false
-		}
-	]
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lua",
+            "request": "launch",
+            "name": "Lua",
+            "program": "${file}",
+            "console": "internalConsole",
+            "stopOnEntry": false
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Discord Bot",
+            "program": "${workspaceFolder}/index.js",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "preLaunchTask": "Run Deploy Commands"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Deploy Commands",
+            "program": "${workspaceFolder}/deployCommands.js",
+            "console": "internalConsole",
+            "stopOnEntry": false
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "JS debug",
+            "program": "${file}",
+            "console": "internalConsole",
+            "stopOnEntry": false
+        }
+    ]
 }

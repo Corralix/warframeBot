@@ -1,0 +1,11 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run Deploy Commands",
+            "type": "shell",
+            "command": "node ./deployCommands.js",
+            "problemMatcher": []
+        }
+    ]
+}
