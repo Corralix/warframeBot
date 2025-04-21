@@ -71,3 +71,4 @@ function MissionDetails(infoType)
 end
 
 utils.stringToFile(MissionDetails("MissionDetails"), "MissionDetails", "./json/") -- for testing purposes only
+utils.stringToFile(MissionDetails("MissionTypes"), "MissionTypes", "./json/") -- for testing purposes only
