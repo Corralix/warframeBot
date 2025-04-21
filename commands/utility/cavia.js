@@ -1,5 +1,5 @@
-const { fetchData } = require('../../modules/webSnatcher.mjs');
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const fetchData = require('../../modules/webSnatcher.js');
+const { AttachmentBuilder, SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const MissionDetails = require('../../json/MissionDetails.json');
 const Challenges = require('../../json/ExportChallenges.json');
 const wfDict = require('../../json/wfDict.json');
@@ -46,6 +46,8 @@ module.exports = {
 
             }
 
+            const factionAttachment = new AttachmentBuilder(`assets/icons/MURMUR.png`);
+            const syndicateAttachment = new AttachmentBuilder(`assets/icons/${commandDetails.commandName.toUpperCase()}.png`);
             
             function fieldGenerator(nodeList, challengeList) {
                 let output = "";
@@ -62,16 +64,16 @@ module.exports = {
             const exampleEmbed = new EmbedBuilder()
                         .setColor(0x0099ff)
                         .setTitle(commandDetails.syndicateNameString)
-                        .setAuthor({ name: "THE MURMUR", iconURL: "https://wiki.warframe.com/images/MurmurIcon.png?e4daf", url: "https://browse.wf/about" })
+                        .setAuthor({ name: "THE MURMUR", iconURL: `attachment://MURMUR.png`, url: "https://browse.wf/about" })
                         .setDescription(timeString)
-                        .setThumbnail("https://wiki.warframe.com/images/Cavia_Syndicate_Logo_1.png?406b5")
+                        .setThumbnail(`attachment://CAVIA.png`)
                         .addFields(
                             fieldGenerator(nodeList, challengeList)
                         )
                         .setFooter({ text: "Lilypad 🧑‍🌾"})
                         .setTimestamp();
 
-            interaction.reply({ embeds: [exampleEmbed] });
+            interaction.reply({ embeds: [exampleEmbed], files: [factionAttachment, syndicateAttachment] });
         }
         )
         .catch(error => {

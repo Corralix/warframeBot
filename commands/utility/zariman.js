@@ -1,11 +1,11 @@
-const { fetchData } = require('../../modules/webSnatcher.mjs');
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const fetchData = require('../../modules/webSnatcher.js');
+const { AttachmentBuilder, SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const MissionDetails = require('../../json/MissionDetails.json');
 const Challenges = require('../../json/ExportChallenges.json');
 const wfDict = require('../../json/wfDict.json');
 
 const commandDetails = {
-    name: "zariman",
+    commandName: "zariman",
     description: "Delivers all Zariman Bounties",
     bountyId: "ZarimanSyndicate",
     syndicateNameString: "The Holdfasts"
@@ -14,14 +14,14 @@ const commandDetails = {
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName(commandDetails.name)
+        .setName(commandDetails.commandName)
         .setDescription(commandDetails.description),
         
     async execute(interaction) {
         fetchData('https://oracle.browse.wf/bounty-cycle')
         .then(data => {
             let time = Math.floor(data["expiry"] / 1000);
-            let faction = data["zarimanFaction"].slice(3);
+            let faction = data["zarimanFaction"].slice(3) == "GRINEER" ? "KUVA GRINEER" : "CORPUS";
 
             let timeString = `Expires at: <t:${time}:t> (<t:${time}:R>)`;
             let factionString = `${faction}`;
@@ -47,6 +47,15 @@ module.exports = {
 
             }
 
+            let displayFaction = "";
+            if (faction == "KUVA GRINEER") {
+                displayFaction = "KUVA_GRINEER";
+            } else {
+                displayFaction = faction;
+            }
+
+            const factionAttachment = new AttachmentBuilder(`assets/icons/${displayFaction}.png`);
+            const syndicateAttachment = new AttachmentBuilder(`assets/icons/${commandDetails.commandName.toUpperCase()}.png`);
             
             function fieldGenerator(nodeList, challengeList) {
                 let output = "";
@@ -63,16 +72,16 @@ module.exports = {
             const exampleEmbed = new EmbedBuilder()
                         .setColor(0x0099ff)
                         .setTitle(commandDetails.syndicateNameString)
-                        .setAuthor({ name: `${factionString}`, iconURL: "https://i.imgur.com/AfFp7pu.png", url: "https://browse.wf/about" })
+                        .setAuthor({ name: `${factionString}`, iconURL: `attachment://${displayFaction}.png`, url: "https://browse.wf/about" })
                         .setDescription(timeString)
-                        .setThumbnail("https://i.imgur.com/AfFp7pu.png")
+                        .setThumbnail("attachment://ZARIMAN.png")
                         .addFields(
                             fieldGenerator(nodeList, challengeList)
                         )
                         .setFooter({ text: "Lilypad 🧑‍🌾"})
                         .setTimestamp();
 
-            interaction.reply({ embeds: [exampleEmbed] });
+                        interaction.reply({ embeds: [exampleEmbed], files: [factionAttachment, syndicateAttachment] });
         }
         )
         .catch(error => {

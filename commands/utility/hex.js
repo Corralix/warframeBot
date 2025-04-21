@@ -1,8 +1,10 @@
-const { fetchData } = require('../../modules/webSnatcher.mjs');
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const fetchData = require('../../modules/webSnatcher.js');
+const { AttachmentBuilder, SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const MissionDetails = require('../../json/MissionDetails.json');
 const Challenges = require('../../json/ExportChallenges.json');
 const wfDict = require('../../json/wfDict.json');
+const fs = require('node:fs');
+const path = require('node:path');
 
 const commandDetails = {
     commandName: "hex",
@@ -43,27 +45,29 @@ module.exports = {
 
                 let node = MissionDetails[bountyRank["node"]];
 
-                let ally = allyNames[bountyRank["ally"]]
+                let ally = allyNames[bountyRank["ally"]];
                 let challengePath = Challenges[bountyRank["challenge"]];
                 let challengeDesc = challengePath["description"];
                 let challengeCount = challengePath["requiredCount"];
                 let challengeTranslation = wfDict[challengeDesc];
                 challengeTranslation = challengeTranslation.replace("|COUNT|", `${challengeCount}`);
                 challengeTranslation = challengeTranslation.replace("|ALLY|", `${ally}`);
-                challengeTranslation = challengeTranslation.replace("|OPEN_COLOR|", "");
-                challengeTranslation = challengeTranslation.replace("|CLOSE_COLOR|", "");
+                challengeTranslation = challengeTranslation
+                    .replace("|OPEN_COLOR|", "")
+                    .replace("|CLOSE_COLOR|", "")
 
                 nodeList.push(node)
                 challengeList.push(challengeTranslation);
             }
 
             let displayFaction = "";
-            let factionIcon = {"TECHROT": "https://wiki.warframe.com/images/TechrotIcon.png?09c02","SCALDRA": "https://wiki.warframe.com/images/ScaldraIcon.png?70572"}
             if (nodeList[nodeList.length-1]["Enemy"] == "Techrot") {
                 displayFaction = "TECHROT";
             } else {
                 displayFaction = "SCALDRA";
             }
+            const factionAttachment = new AttachmentBuilder(`assets/icons/${displayFaction}.png`);
+            const syndicateAttachment = new AttachmentBuilder(`assets/icons/${commandDetails.commandName.toUpperCase()}.png`);
 
 
             function fieldGenerator(nodeList, challengeList) {
@@ -78,13 +82,13 @@ module.exports = {
                     let enemy = "";
                     let distinguishNodes = ["Exterminate", "Hell-Scrub"];
 
-                    if (nodeFaction == "Techrot" && distinguishNodes.includes(nodeList[i]["Type"])) {
-                        enemy = "Techrot";
-                    } else if (nodeFaction == "Scaldra" && distinguishNodes.includes(nodeList[i]["Type"])) {
-                        enemy = "Scaldra"
+                    if (nodeFaction == "Techrot" && distinguishNodes.includes(nodeType)) {
+                        enemy = "Techrot ";
+                    } else if (nodeFaction == "Scaldra" && distinguishNodes.includes(nodeType)) {
+                        enemy = "Scaldra "
                     }
                     
-                    output += (`${rankEmoji[i]} **${nodeName}** (${enemy} ${nodeType})\n`)
+                    output += (`${rankEmoji[i]} **${nodeName}** (${enemy}${nodeType})\n`)
                     output += (`${challengeList[i]}\n\n`);
                 }
 
@@ -94,16 +98,16 @@ module.exports = {
             const exampleEmbed = new EmbedBuilder()
                         .setColor(0x0099ff)
                         .setTitle(commandDetails.syndicateNameString)
-                        .setAuthor({ name: displayFaction, iconURL: factionIcon[displayFaction], url: "https://browse.wf/about" })
+                        .setAuthor({ name: displayFaction, iconURL: `attachment://${displayFaction}.png`, url: "https://browse.wf/about" })
                         .setDescription(timeString)
-                        .setThumbnail("https://wiki.warframe.com/images/HexIcon.png?c8c7d")
+                        .setThumbnail(`attachment://HEX.png`)
                         .addFields(
                             fieldGenerator(nodeList, challengeList)
                         )
                         .setFooter({ text: "Lilypad 🧑‍🌾"})
                         .setTimestamp();
 
-            interaction.reply({ embeds: [exampleEmbed] });
+            interaction.reply({ embeds: [exampleEmbed], files: [factionAttachment, syndicateAttachment] });
         }
         )
         .catch(error => {
