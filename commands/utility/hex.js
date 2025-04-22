@@ -61,7 +61,7 @@ module.exports = {
             }
 
             let displayFaction = "";
-            if (nodeList[nodeList.length-1]["Enemy"] == "Techrot") {
+            if (nodeList[nodeList[nodeList.length-2]]["Enemy"] == "Techrot") {
                 displayFaction = "TECHROT";
             } else {
                 displayFaction = "SCALDRA";
