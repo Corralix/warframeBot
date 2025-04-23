@@ -1,7 +1,8 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const { clientId, guildId, token } = require('./config.json');
+const { clientId, guildId, token, InvasionChannelId } = require('./config.json');
 const { Client, Collection, Events, GatewayIntentBits, MessageFlags, PermissionFlagsBits } = require('discord.js');
+const getInvasions = require('./modules/getInvasions.js');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
@@ -25,6 +26,22 @@ for (const folder of commandFolders) {
 
 client.once(Events.ClientReady, readyClient => {
 	console.log(`Ready! Logged in as ${readyClient.user.tag}`);
+
+	if (InvasionChannelId) {
+		setInterval(() => {
+			const configJSON = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
+			if (configJSON["isInvasionsOn"]) { // TODO: Disable and enable isInvasionsOn command
+				const updatedInvasionChannelId = configJSON["InvasionChannelId"];
+				const channelId = updatedInvasionChannelId // TODO: MAKE IT MULTI-SERVER FRIENDLY
+				const channel = client.channels.cache.get(channelId)
+				getInvasions().then(result => {
+					if (result["hasOrokin"]) {
+						channel.send("There is an Orokin invasion!"); // TODO: Mention GoodInvasions role or something
+					}
+				});
+			}
+		}, 600 * 1000);
+	}
 });
 
 client.on(Events.InteractionCreate, async interaction => {
