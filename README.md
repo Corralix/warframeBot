@@ -7,3 +7,6 @@
 - Baro Ki'Teer (next visit and items)
 - EDA and ETA
 - Alerts (Gift of the Lotus alerts)
+- Teshin
+---
+## UNINSTALL WRANGLER / CLOUDFLARE STUFF
