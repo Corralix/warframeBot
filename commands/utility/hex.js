@@ -61,7 +61,7 @@ module.exports = {
             }
 
             let displayFaction = "";
-            if (nodeList[nodeList[nodeList.length-2]]["Enemy"] == "Techrot") {
+            if (nodeList[nodeList.length-2]["Enemy"] == "Techrot") {
                 displayFaction = "TECHROT";
             } else {
                 displayFaction = "SCALDRA";
@@ -92,13 +92,13 @@ module.exports = {
                     output += (`${challengeList[i]}\n\n`);
                 }
 
-                return { name: "", value: output}
+                return { name: "", value: output }
             }
 
             const exampleEmbed = new EmbedBuilder()
                         .setColor(0x0099ff)
                         .setTitle(commandDetails.syndicateNameString)
-                        .setAuthor({ name: displayFaction, iconURL: `attachment://${displayFaction}.png`, url: "https://browse.wf/about" })
+                        .setAuthor({ name: displayFaction, iconURL: `attachment://${displayFaction}.png`, url: "https://oracle.browse.wf/" })
                         .setDescription(timeString)
                         .setThumbnail(`attachment://HEX.png`)
                         .addFields(

@@ -66,13 +66,13 @@ module.exports = {
                     output += (`${challengeList[i]}\n\n`);
                 }
 
-                return { name: "", value: output}
+                return { name: "", value: output }
             }
 
             const exampleEmbed = new EmbedBuilder()
                         .setColor(0x0099ff)
                         .setTitle(commandDetails.syndicateNameString)
-                        .setAuthor({ name: `${factionString}`, iconURL: `attachment://${displayFaction}.png`, url: "https://browse.wf/about" })
+                        .setAuthor({ name: `${factionString}`, iconURL: `attachment://${displayFaction}.png`, url: "https://oracle.browse.wf/" })
                         .setDescription(timeString)
                         .setThumbnail("attachment://ZARIMAN.png")
                         .addFields(
