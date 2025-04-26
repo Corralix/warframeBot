@@ -9,7 +9,7 @@ A Discord bot designed to provide Warframe players with real-time information ab
 - **Fissure Updates**: Tracks both Steel Path and normal Void Fissures.
 - **Invasion Alerts**: Fetches and displays active invasions with rewards.
 
-## Commands
+### Commands
 
 - `/setinvasionchannel`: Sets the channel for invasion updates.
 
@@ -49,6 +49,10 @@ A Discord bot designed to provide Warframe players with real-time information ab
     node index.js
    ```
 
+### Packages required
+
+- discord.js
+
 ## Planned Features
 
 - **Archon Hunt**
@@ -70,7 +74,3 @@ A Discord bot designed to provide Warframe players with real-time information ab
   - Also make it initialize the file if it doesn't exist (Cuz of gitignore)
 - Make it so bot works with multiple servers
   - Find a way to store variables/settings for each server (probably doable with discord.js)
-
-## Packages required
-
-- discord.js
