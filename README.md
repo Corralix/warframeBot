@@ -30,7 +30,7 @@ A Discord bot designed to provide Warframe players with real-time information ab
    git clone https://github.com/yourusername/warframeBot.git
    ```
 
-2. Edit the `config.json` file with your Discord bot token and other settings:
+2. Edit the `config.json` file with your Discord bot token and other settings
 
 3. Install the required packages:
 
@@ -65,6 +65,11 @@ A Discord bot designed to provide Warframe players with real-time information ab
 ## TODO
 
 - UNINSTALL WRANGLER / CLOUDFLARE STUFF
+- Maybe change config.json to .env
+  - If it works, add a .env.example file to the repo
+  - Also make it initialize the file if it doesn't exist (Cuz of gitignore)
+- Make it so bot works with multiple servers
+  - Find a way to store variables/settings for each server (probably doable with discord.js)
 
 ## Packages required
 
