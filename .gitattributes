@@ -1,3 +1,3 @@
 # Auto detect text files and perform LF normalization
 * text=auto
-lua/missionNodeData.lua linguist-vendored
+lua/modules/missionNodeData.lua -linguist-vendored
