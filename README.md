@@ -17,15 +17,36 @@ A Discord bot designed to provide Warframe players with real-time information ab
 
 - `/fissures`: Displays current non-Steel Path fissures.
 - `/spfissures`: Displays current Steel Path fissures.
+- `/allfissures`: Displays all fissures, including Steel Path and non-Steel Path.
 - `/zariman`: Provides Zariman bounty details.
 - `/cavia`: Displays Cavia bounty information.
 - `/hex`: Provides Hex bounty details.
 
-## Installation
+## How to run/test
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/yourusername/warframeBot.git
+   ```
+
+2. Edit the `config.json` file with your Discord bot token and other settings:
+
+3. Install the required packages:
+
+   ```bash
+   npm install discord.js
+   ```
+
+4. Deploy commands to your server:
+
+   ```bash
+   node deploy-commands.js
+   ```
+
+5. Start the bot:
+   ```bash
+    node index.js
    ```
 
 ### Planned Features
