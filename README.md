@@ -49,7 +49,7 @@ A Discord bot designed to provide Warframe players with real-time information ab
     node index.js
    ```
 
-### Planned Features
+## Planned Features
 
 - **Archon Hunt**
   - _Coordination_: Social feature to help players team up for Archon Hunts.
@@ -62,7 +62,7 @@ A Discord bot designed to provide Warframe players with real-time information ab
 - EDA and ETA
 - Teshin
 
-### TODO
+## TODO
 
 - UNINSTALL WRANGLER / CLOUDFLARE STUFF
 
