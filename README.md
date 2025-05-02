@@ -57,20 +57,21 @@ A Discord bot designed to provide Warframe players with real-time information ab
 
 - **Archon Hunt**
   - _Coordination_: Social feature to help players team up for Archon Hunts.
+  - What shard it is this week, and the archon
 - **Void Storm Tracking**: Integration with ActiveMissions for Void Storms.
 - **Circuit Tracking**: Displays progress for both Steel Path and Normal Circuits.
 - **Alerts**: Notifications for Gift of the Lotus alerts and other time-sensitive events.
 - **Environments** (Earth: Night/Day, PoE: Night/Day, etc)
 - **Void Storms** (might be with ActiveMissions)
 - Baro Ki'Teer (next visit and items)
-- EDA and ETA
-- Teshin
+- EDA and ETA (Missions and debuffs)
+- Teshin (Weekly item)
 
 ## TODO
 
-- UNINSTALL WRANGLER / CLOUDFLARE STUFF
 - Maybe change config.json to .env
   - If it works, add a .env.example file to the repo
   - Also make it initialize the file if it doesn't exist (Cuz of gitignore)
 - Make it so bot works with multiple servers
   - Find a way to store variables/settings for each server (probably doable with discord.js)
+  - Seems to be better to do with JSON (MongoDB probably better)
