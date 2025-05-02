@@ -19,7 +19,7 @@ A Discord bot designed to provide Warframe players with real-time information ab
 - `/spfissures`: Displays current Steel Path fissures.
 - `/allfissures`: Displays all fissures, including Steel Path and non-Steel Path.
 - `/zariman`: Provides Zariman bounty details.
-- `/cavia`: Displays Cavia bounty information.
+- `/cavia`: Provides Cavia bounty details.
 - `/hex`: Provides Hex bounty details.
 
 ## How to run/test
