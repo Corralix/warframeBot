@@ -51,7 +51,7 @@ module.exports = {
             
             function fieldGenerator(nodeList, challengeList) {
                 let output = "";
-                let rankEmoji = ["\u0031\uFE0F\u20E3", "\u0032\uFE0F\u20E3", "\u0033\uFE0F\u20E3", "\u0034\uFE0F\u20E3", "\u0035\uFE0F\u20E3"];
+                let rankEmoji = ["\u0031\uFE0F\u20E3", "\u0032\uFE0F\u20E3", "\u0033\uFE0F\u20E3", "\u0034\uFE0F\u20E3", "\u0035\uFE0F\u20E3", "\u0036\uFE0F\u20E3", "\u0037\uFE0F\u20E3", "\u0038\uFE0F\u20E3", "\u0039\uFE0F\u20E3"];
 
                 for (let i = 0; i < nodeList.length; i++) {
                     output += (`${rankEmoji[i]} **${nodeList[i]["Name"]}** (${nodeList[i]["Type"]})\n`)

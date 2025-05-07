@@ -1,8 +1,16 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const { clientId, guildId, token, InvasionChannelId } = require('./config.json');
+// const { clientId, guildId, token, InvasionChannelId } = require('./config.json');
+require('dotenv').config();
 const { Client, Collection, Events, GatewayIntentBits, MessageFlags, PermissionFlagsBits } = require('discord.js');
 const getInvasions = require('./modules/getInvasions.js');
+
+const guildId = process.env.GUILD_ID;
+const token = process.env.TOKEN;
+const clientId = process.env.CLIENT_ID;
+const InvasionChannelId = process.env.INVASION_CHANNEL_ID;
+const isInvasionsOn = process.env.IS_INVASIONS_ON === 'true';
+
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
