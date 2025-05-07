@@ -21,6 +21,7 @@ A Discord bot designed to provide Warframe players with real-time information ab
 - `/zariman`: Provides Zariman bounty details.
 - `/cavia`: Provides Cavia bounty details.
 - `/hex`: Provides Hex bounty details.
+- `/archon`: Provides the week's Archon Hunt details.
 
 ## How to run/test
 
@@ -55,9 +56,6 @@ A Discord bot designed to provide Warframe players with real-time information ab
 
 ## Planned Features
 
-- **Archon Hunt**
-  - _Coordination_: Social feature to help players team up for Archon Hunts.
-  - What shard it is this week, and the archon
 - **Void Storm Tracking**: Integration with ActiveMissions for Void Storms.
 - **Circuit Tracking**: Displays progress for both Steel Path and Normal Circuits.
 - **Alerts**: Notifications for Gift of the Lotus alerts and other time-sensitive events.
