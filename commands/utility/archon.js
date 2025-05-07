@@ -28,7 +28,7 @@ module.exports = {
             for (let i = 0; i < commandDetails["archonName"].length; i++) {
                 if (archonData["Boss"].includes(commandDetails["archonName"][i])) {
                     archonName = commandDetails["archonName"][i];
-                    shard = commandDetails[shardPath][i];
+                    shard = commandDetails["shardPath"][i];
                 }
             }
 
@@ -40,12 +40,13 @@ module.exports = {
             for (let i = 0; i < missions.length; i++) {
                 let node = missions[i]["node"];
                 let type = missions[i]["missionType"];
+                let mission = MissionDetails[node];
 
-                let mission = MissionDetails[node]["Name"];
+                let missionName = mission["Name"];
                 let missionType = MissionTypes[type]["Name"];
                 planet = mission["Planet"];
 
-                missionList.push(mission);
+                missionList.push(missionName);
                 missionTypeList.push(missionType);
             }
 
@@ -53,11 +54,12 @@ module.exports = {
             const archonIcon = new AttachmentBuilder(`assets/icons/NARMER.png`);
 
             function fieldGenerator(missionList, missionTypeList) {
+                let rankEmoji = ["\u0031\uFE0F\u20E3", "\u0032\uFE0F\u20E3", "\u0033\uFE0F\u20E3", "\u0034\uFE0F\u20E3", "\u0035\uFE0F\u20E3", "\u0036\uFE0F\u20E3", "\u0037\uFE0F\u20E3", "\u0038\uFE0F\u20E3", "\u0039\uFE0F\u20E3"];
                 let output = "";
 
                 for (let i = 0; i < missionList.length; i++) {
-                    output += `${missionList[i]} (${commandDetails["levels"][i]})\n`;
-                    output += `${missionTypeList[i]}\n\n`;
+                    output += `${rankEmoji[i]} **${missionTypeList[i]}** (${commandDetails["levels"][i]})\n`;
+                    output += `${"\u2800".repeat(3)}${missionList[i]}, ${planet}\n\n`;
                 }
 
                 return { name: "", value: output};
@@ -65,9 +67,8 @@ module.exports = {
 
             const exampleEmbed = new EmbedBuilder()
                                     .setColor(0x0099ff)
-                                    .setTitle(archonName)
+                                    .setTitle(`ARCHON ${archonName}`)
                                     .setAuthor({ name: "ARCHON HUNT", iconURL: `attachment://NARMER.png`, url: "https://oracle.browse.wf/" })
-                                    .setDescription(`**${planet}**\n`)
                                     .setThumbnail(`attachment://${shard}`)
                                     .addFields(
                                         fieldGenerator(missionList, missionTypeList)
