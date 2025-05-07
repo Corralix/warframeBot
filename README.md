@@ -56,11 +56,10 @@ A Discord bot designed to provide Warframe players with real-time information ab
 
 ## Planned Features
 
-- **Void Storm Tracking**: Integration with ActiveMissions for Void Storms.
-- **Circuit Tracking**: Displays progress for both Steel Path and Normal Circuits.
+- **Circuit Tracking**: Displays progress for both Steel Path and Normal Circuits. (In EndlessXpChoices WorldState JSON)
 - **Alerts**: Notifications for Gift of the Lotus alerts and other time-sensitive events.
 - **Environments** (Earth: Night/Day, PoE: Night/Day, etc)
-- **Void Storms** (might be with ActiveMissions)
+- **Void Storms** (is in VoidStorms WorldState JSON)
 - Baro Ki'Teer (next visit and items)
 - EDA and ETA (Missions and debuffs)
 - Teshin (Weekly item)
