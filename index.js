@@ -6,7 +6,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 require('dotenv').config();
 const { Client, Collection, Events, GatewayIntentBits, MessageFlags, PermissionFlagsBits } = require('discord.js');
-const getInvasions = require('./modules/getInvasions.js');
+const colours = require('./modules/colours.js');
+// const getInvasions = require('./modules/getInvasions.js');
 
 // env implementation
 const uri = process.env.DATABASE_URI;
@@ -21,7 +22,7 @@ async function connectToDatabase() {
     }
     try {
         await mongoose.connect(uri);
-        console.log("Successfully connected to MongoDB using Mongoose!");
+        colours.logSuccess("Successfully connected to Database");
     } catch (error) {
         console.error("Error connecting to MongoDB with Mongoose:", error);
         process.exit(1); // Exit if DB connection fails
@@ -83,7 +84,7 @@ async function main() {
 async function disconnectFromDatabase() {
 	try {
 		await mongoose.disconnect();
-		console.log("Disconnected from MongoDB.");
+		console.log("\n Disconnected from MongoDB.");
 		process.exit(0);
 	} catch (error) {
 		console.error("Error disconnecting from MongoDB:", error);
@@ -112,13 +113,13 @@ for (const folder of commandFolders) {
 		if ('data' in command && 'execute' in command) {
 			client.commands.set(command.data.name, command); // Set a new item in the Collection
 		} else {
-			console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
+			colours.logWarning(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
 		}
 	}
 }
 
 client.once(Events.ClientReady, readyClient => {
-	console.log(`Ready! Logged in as ${readyClient.user.tag}`);
+	colours.logSuccess(`Ready! Logged in as ${readyClient.user.tag}`);
 
 	// if (InvasionChannelId) {
 	// 	setInterval(() => {
