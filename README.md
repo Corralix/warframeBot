@@ -68,9 +68,6 @@ A Discord bot designed to provide Warframe players with real-time information ab
 
 ## TODO
 
-- UNINSTALL WRANGLER / CLOUDFLARE STUFF
-- Maybe change config.json to .env
-  - If it works, add a .env.example file to the repo
-  - Also make it initialize the file if it doesn't exist (Cuz of gitignore)
-- Make it so bot works with multiple servers
-  - Find a way to store variables/settings for each server (probably doable with discord.js)
+- Read more into "Subscribing to a channel" in discordjs (using webhooks to alert GoodInvasions/Baro)
+- Use `getServerSettings` information for setting invasion channel
+- Create the goodInvasions alert function

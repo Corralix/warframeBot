@@ -18,12 +18,14 @@ module.exports = {
         .then(data => {
 
             let edaData = data["labConquestMissions"];
+            let missions = [];
             let modifiers = [];
             let variants = [];
 
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i < edaData.length; i++) {
                 variants.push(edaData[i]["variant"]);
                 modifiers.push(edaData[i]["conditions"]);
+                missions.push(edaData[i]["type"]);
             }
 
             let translatedVariants = [];
@@ -42,6 +44,23 @@ module.exports = {
                 translatedModifiers.push(tempArr);
             }
 
+            function fieldGenerator() {
+
+            }
+
+            const murmurIcon = new AttachmentBuilder(`assets/icons/MURMUR.png`);
+
+            const exampleEmbed = new EmbedBuilder()
+                                    .setColor(0x0099ff)
+                                    .setTitle(`DEEP ARCHIMEDEA`)
+                                    .setAuthor({ name: "ELITE/NORMAL", iconURL: `attachment://MURMUR.png`, url: "https://oracle.browse.wf/" })
+                                    .addFields(
+                                        fieldGenerator(missionList, missionTypeList)
+                                    )
+                                    .setFooter({ text: "Lilypad 🧑‍🌾"})
+                                    .setTimestamp();
+            
+                        interaction.reply({ embeds: [exampleEmbed], files: [murmurIcon] });
         }
         )
         .catch(error => {
