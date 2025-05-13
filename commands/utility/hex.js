@@ -3,8 +3,6 @@ const { AttachmentBuilder, SlashCommandBuilder, EmbedBuilder } = require("discor
 const MissionDetails = require('../../json/MissionDetails.json');
 const Challenges = require('../../json/ExportChallenges.json');
 const wfDict = require('../../json/wfDict.json');
-const fs = require('node:fs');
-const path = require('node:path');
 
 const commandDetails = {
     commandName: "hex",

@@ -45,10 +45,10 @@ async function setupOrUpdateServerConfig(guildId, newSettings) {
             { $set: newSettings },      // Data to set/update
             options
         );
-        devMode && console.log(`Configuration for server ${guildId} processed:`, updatedConfig);
+        devMode && colours.logSuccess(`Configuration for server ${guildId} processed:`, updatedConfig);
         return updatedConfig;
     } catch (error) {
-        devMode && console.error(`Error upserting config for server ${guildId}:`, error);
+        devMode && colours.logError(`Error upserting config for server ${guildId}:`, error);
         return null;
     }
 }
