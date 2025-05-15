@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "deploy" : "node deployCommands.js && node index.js",
-    "prod" : "node index.js prod",
-    "dev" : "node index.js dev"
+    "deploy": "node deployCommands.js && node index.js",
+    "prod": "node index.js prod",
+    "dev": "node index.js dev"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,7 @@
   "dependencies": {
     "discord.js": "^14.18.0",
     "dotenv": "^16.5.0",
-    "mongoose": "^8.14.2"
+    "mongoose": "^8.14.3"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"

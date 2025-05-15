@@ -9,7 +9,12 @@ const commandDetails = {
 }
 
 const translations = {
-    "DUALDEFENSE": "Mirror Defense"
+    "DUALDEFENSE": "Mirror Defense",
+    "EXTERMINATE": "Exterminate",
+    "ALCHEMY": "Alchemy",
+    "ASSASSINATION": "Assassination",
+    "SURVIVAL": "Survival",
+    "ARTIFACT": "Disruption"
 }
 
 module.exports = {
@@ -37,19 +42,12 @@ module.exports = {
             for (let i = 0; i < edaData.length; i++) {
                 variants.push(edaData[i]["variant"]);
                 modifiers.push(edaData[i]["conditions"]);
-                missions.push(edaData[i]["type"]);
+                missions.push(edaData[i]["type"].toUpperCase());
             }
 
             let translatedMissions = [];
             for (let i = 0; i < missions.length; i++) {
-                if (missions[i].toUpperCase() === "DUALDEFENSE") {
-                    translatedMissions.push(translations["DUALDEFENSE"]);
-                } else if (mission[i].toUpperCase() === "DEFENSE") {
-                    missions[i] = "MT_" + missions[i] + "~Defense";
-                } else {
-                    missions[i] = "MT_" + missions[i];
-                }
-                translatedMissions.push(MissionTypes[missions[i]["Name"]]);
+                    translatedMissions.push(translations[missions[i]]);
             }
 
             let translatedVariants = [];
@@ -69,14 +67,29 @@ module.exports = {
             }
 
             for (let i = 0; i < translatedVariants.length; i++) {
-                translatedModifiers[i].push(translatedVariants[i]);
+                translatedModifiers[i].unshift(translatedVariants[i]);
             }
 
             function fieldGenerator(missions, modifiers, debuffs) {
-                let output = "";
+                let output = [];
                 let rankEmoji = ["\u0031\uFE0F\u20E3", "\u0032\uFE0F\u20E3", "\u0033\uFE0F\u20E3", "\u0034\uFE0F\u20E3", "\u0035\uFE0F\u20E3", "\u0036\uFE0F\u20E3", "\u0037\uFE0F\u20E3", "\u0038\uFE0F\u20E3", "\u0039\uFE0F\u20E3"];
 
-
+                for (let i = 0; i < modifiers.length; i++) {
+                    const missOut = { name:`${rankEmoji[i]} ${missions[i]}`, value: "" };
+                    output.push(missOut);
+                    
+                    for (let j = 0; j < modifiers.length; j++) {
+                        const modOut = { name: "", value: `${modifiers[i][j]}`, inline: true};
+                        output.push(modOut);
+                    }
+                }
+                output.push({ name: "", value: ""});
+                output.push({ name:"Warframe debuffs", value: "" });
+                for (let i = 0; i < debuffs.length; i++) {
+                    const debOut = { name: "", value: `${debuffs[i]}`, inline: true };
+                    output.push(debOut);
+                }
+                return output;
             }
 
             const murmurIcon = new AttachmentBuilder(`assets/icons/MURMUR.png`);
