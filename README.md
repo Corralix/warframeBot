@@ -21,6 +21,7 @@ A Discord bot designed to provide Warframe players with real-time information ab
 - `/zariman`: Provides Zariman bounty details.
 - `/cavia`: Provides Cavia bounty details.
 - `/hex`: Provides Hex bounty details.
+- `/archon`: Provides the week's Archon Hunt details.
 
 ## How to run/test
 
@@ -55,19 +56,14 @@ A Discord bot designed to provide Warframe players with real-time information ab
 
 ## Planned Features
 
-- **Archon Hunt**
-  - _Coordination_: Social feature to help players team up for Archon Hunts.
-- **Void Storm Tracking**: Integration with ActiveMissions for Void Storms.
-- **Circuit Tracking**: Displays progress for both Steel Path and Normal Circuits.
+- **Circuit Tracking**: Displays progress for both Steel Path and Normal Circuits. (In EndlessXpChoices WorldState JSON)
 - **Alerts**: Notifications for Gift of the Lotus alerts and other time-sensitive events.
 - **Environments** (Earth: Night/Day, PoE: Night/Day, etc)
-- **Void Storms** (might be with ActiveMissions)
+- **Void Storms** (is in VoidStorms WorldState JSON)
 - Baro Ki'Teer (next visit and items)
-- EDA and ETA
-- Teshin
+- EDA and ETA (Missions and debuffs)
+- Teshin (Weekly item)
 
 ## TODO
 
-- Read more into "Subscribing to a channel" in discordjs (using webhooks to alert GoodInvasions/Baro)
-- Use `getServerSettings` information for setting invasion channel
-- Create the goodInvasions alert function
+- Fix `allfisurres` command so that it uses arrows/pages to combat max embed char limit
