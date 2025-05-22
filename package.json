@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "node deployCommands.js && node index.js",
+    "prod": "node index.js prod",
+    "dev": "node index.js dev"
   },
   "repository": {
     "type": "git",
@@ -20,6 +22,10 @@
   "homepage": "https://github.com/Corralix/warframeBot#readme",
   "dependencies": {
     "discord.js": "^14.18.0",
-    "dotenv": "^16.5.0"
+    "dotenv": "^16.5.0",
+    "mongoose": "^8.14.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }

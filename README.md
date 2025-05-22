@@ -66,9 +66,4 @@ A Discord bot designed to provide Warframe players with real-time information ab
 
 ## TODO
 
-- Maybe change config.json to .env
-  - If it works, add a .env.example file to the repo
-  - Also make it initialize the file if it doesn't exist (Cuz of gitignore)
-- Make it so bot works with multiple servers
-  - Find a way to store variables/settings for each server (probably doable with discord.js)
-  - Seems to be better to do with JSON (MongoDB probably better)
+- Fix `allfisurres` command so that it uses arrows/pages to combat max embed char limit

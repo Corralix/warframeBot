@@ -77,8 +77,8 @@ module.exports = {
                                     .setTimestamp();
             
                         interaction.reply({ embeds: [exampleEmbed], files: [shardIcon, archonIcon] });
-                    }
-                    )
+        }
+        )
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
         });
