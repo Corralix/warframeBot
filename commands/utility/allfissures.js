@@ -1,5 +1,5 @@
 const fetchData = require('../../modules/webSnatcher.js');
-const { AttachmentBuilder, SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const { AttachmentBuilder, SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
 const MissionDetails = require('../../json/MissionDetails.json');
 const wfDict = require('../../json/wfDict.json');
 const fs = require('node:fs');
@@ -15,7 +15,6 @@ const commandDetails = {
 
 const authorIcon = new AttachmentBuilder(`assets/icons/${commandDetails.iconPath}`);
 const voidIcon = new AttachmentBuilder(`assets/icons/VOID_TRACES.png`);
-
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -49,7 +48,19 @@ module.exports = {
                 }
             }
 
-
+            // Setting interact buttons
+            const prev = new ButtonBuilder()
+                .setCustomId("prev")
+                .setLabel("\u25C4")
+                .setStyle(ButtonStyle.Primary);
+            const next = new ButtonBuilder()
+                .setCustomId("next")
+                .setLabel("\u25BA")
+                .setStyle(ButtonStyle.Primary);
+            const row = new ActionRowBuilder()
+                .addComponents(prev, next);
+            
+            // Setting initial embed
             const embed = new EmbedBuilder()
                 .setColor('#0099ff')
                 .setTitle("Current Fissures")
@@ -64,7 +75,7 @@ module.exports = {
                 .setFooter({ text: "Lilypad 🧑‍🌾"})
                 .setTimestamp();
 
-            interaction.reply({ embeds: [embed], files: [authorIcon, voidIcon] });
+            interaction.reply({ embeds: [embed], files: [authorIcon, voidIcon], components: [row] });
         })
         .catch(error => {
             console.error('Error fetching data:', error);
