@@ -16,7 +16,8 @@ module.exports = {
             \`cavia\`, \`hex\`, \`zariman\` returns the current bounties for those syndicates respectively.\n
             \`allfissures\`, \`fissures\`, \`spfissures\` returns the current void fissures for those difficulties respectively.\n
             \`archon\` returns this week's Archon Shard and the missions required.\n
-            \`deeparchimedea\`, \`temporalarchimedea\` returns this week's missions, conditions and debuffs for those activities respectively.
+            \`deeparchimedea\`, \`temporalarchimedea\` returns this week's missions, conditions and debuffs for those activities respectively.\n
+            \`worldcycle\` returns the current states of Plains of Eidolon, Cambion Drift, Orb Vallis, and Earth (the planet).
             `));
 	},
 };

@@ -40,11 +40,11 @@ module.exports = {
                     fass: "\uD83D\uDCA5"
                 }
 
-                let cetusCycle = { name: "Plains of Eidolon", value: `${emojis["day"]} ${state(cetus)} | Expires <t:${cetusTime}:R>` };
-                let deimosCycle = { name: "Cambion Drift", value: `${emojis["vome"]} ${state(deimos)} | Expires <t:${deimosTime}:R>` };
-                let venusCycle = { name: "Orb Vallis", value: `${emojis["cold"]} ${state(venus)} | Expires <t:${venusTime}:R>` };
+                let cetusCycle = { name: state(cetus) == "DAY" ? `${emojis["day"]} Plains of Eidolon` : `${emojis["night"]} Plains of Eidolon`, value: `${state(cetus)} | Expires <t:${cetusTime}:R>` };
+                let venusCycle = { name: state(venus) == "COLD" ? `${emojis["cold"]} Orb Vallis` : `${emojis["warm"]} Orb Vallis`, value: `${state(venus)} | Expires <t:${venusTime}:R>` };
+                let deimosCycle = { name: state(deimos) == "FASS" ? `${emojis["fass"]} Cambion Drift` : `${emojis["vome"]} Cambion Drift`, value: `${state(deimos)} | Expires <t:${deimosTime}:R>` };
                 
-                let earthCycle = { name: "Planet Earth", value: `${emojis["night"]} ${state(earth)} | Expires <t:${earthTime}:R>` };
+                let earthCycle = { name: state(earth) == "DAY" ? `${emojis["day"]} Earth` : `${emojis["night"]} Earth`, value: `${state(earth)} | Expires <t:${earthTime}:R>` };
 
                 output.push(cetusCycle, deimosCycle, venusCycle, earthCycle);
                 return output;
