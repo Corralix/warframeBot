@@ -50,32 +50,61 @@ module.exports = {
                 function fieldGenerator(wfRot, wpRot) {
                     let output = [];
 
-                    for (let i = 1; i < Object.keys(wfRot).length; i++) {
-                        let weekResults = wfRot[i];
-                        let temp = { name: `Week ${i}`, value: `${weekResults[0]} | ${weekResults[1]} | ${weekResults[2]}` };
-                        output.push(temp);
-                    }
+                    if (wfRot instanceof Array) {
+                        let frames = "| ";
+                        wfRot.forEach(element => {
+                            frames += element + " | ";
+                        });
 
-                    for (let i = 0; i < Object.keys(wpRot).length; i++) {
-                        let rotationKey = String.fromCharCode(65+i);
-                        let weekResults = wpRot[rotationKey];
-                        let temp = { name: `Rotation ${rotationKey}`, value: `${weekResults[0]} | ${weekResults[1]} | ${weekResults[2]} | ${weekResults[3]} | ${weekResults[4]}`}
-                        output.push(temp);
+                        let weapons = "| ";
+                        wpRot.forEach(element => {
+                            weapons += element + " | ";
+                        });
+
+                        let framesTemp = { name: "Warframes", value: frames };
+                        let weaponsTemp = { name: "Incarnons", value: weapons };
+
+                        output.push(framesTemp);
+                        output.push(weaponsTemp);
+                    } else {
+                        for (let i = 1; i < Object.keys(wfRot).length; i++) {
+                            let weekResults = wfRot[i];
+                            let temp = { name: `Week ${i}`, value: `${weekResults[0]} | ${weekResults[1]} | ${weekResults[2]}` };
+                            output.push(temp);
+                        }
+
+                        for (let i = 0; i < Object.keys(wpRot).length; i++) {
+                            let rotationKey = String.fromCharCode(65+i);
+                            let weekResults = wpRot[rotationKey];
+                            let temp = { name: `Rotation ${rotationKey}`, value: `${weekResults[0]} | ${weekResults[1]} | ${weekResults[2]} | ${weekResults[3]} | ${weekResults[4]}` }
+                            output.push(temp);
+                        }
                     }
                     return output;
                 }
-
-                const exampleEmbed = new EmbedBuilder()
+                // TODO: INCORPORATE BUTTONS TO SEPARATE WARFRAMES AND WEAPONS
+                const allRotations = new EmbedBuilder()
                                     .setColor(0x0099ff)
-                                    .setTitle(`THE CIRCUIT`)
-                                    .setAuthor({ name: "NORMAL/STEEL PATH", url: "https://oracle.browse.wf/" })
+                                    .setTitle("ALL ROTATIONS")
+                                    .setAuthor({ name: "The Circuit", url: "https://oracle.browse.wf/" })
                                     .addFields(
                                         fieldGenerator(warframeRotations, weaponRotations)
                                     )
                                     .setFooter({ text: "Lilypad 🧑‍🌾"})
                                     .setTimestamp();
+                
+                const currentRotation = new EmbedBuilder()
+                                    .setColor(0x1cd41c)
+                                    .setTitle("CURRENT ROTATION")
+                                    .setAuthor({ name: "The Circuit", url: "https://oracle.browse.wf/" })
+                                    .addFields(
+                                        fieldGenerator(currentWarframes, currentWeapons)
+                                    )
+                                    .setFooter({ text: "Lilypad 🧑‍🌾"})
+                                    .setTimestamp();
+                                    
             
-            interaction.reply({ embeds: [exampleEmbed] });
+            interaction.reply({ embeds: [allRotations, currentRotation] });
             })
             .catch((error) => {
                 console.error(
