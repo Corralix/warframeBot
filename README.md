@@ -68,7 +68,6 @@ A Discord bot designed to provide Warframe players with real-time information ab
 
 ## TODO
 
-- Incorporate buttons into `allfisurres` command to combat max embed char limit
 - Incorporate buttons into `circuit` command to split all Warframe and Weapon Incarnon rotations.
 - Incorporate an optional "weapon/frame" argument to `circuit` command to inform users when that rotation will be available.
 - Add a clock to `worldcycle` command to alert (@customrole) users of rarer times (eg. night on Cetus)
