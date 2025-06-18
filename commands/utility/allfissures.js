@@ -1,9 +1,4 @@
-const fetchData = require('../../modules/webSnatcher.js');
 const { AttachmentBuilder, SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
-const MissionDetails = require('../../json/MissionDetails.json');
-const wfDict = require('../../json/wfDict.json');
-const fs = require('node:fs');
-const path = require('node:path');
 const getFissures = require('../../modules/getFissures.js');
 
 const commandDetails = {
@@ -83,6 +78,7 @@ module.exports = {
 
             interaction.reply({ embeds: [embed1], files: [authorIcon, voidIcon], components: [row] });
 
+            // Button interactions
             (async () => {
                 const message = await interaction.fetchReply();
                 const embeds = [embed1, embed2];
@@ -90,6 +86,7 @@ module.exports = {
                 
                 const collector = message.createMessageComponentCollector({ time: 120_000 });
 
+                // Listen for button interactions
                 collector.on("collect", async(buttonInteraction) => {
                     if (buttonInteraction.customId === 'prev') {
                         currentPage = (currentPage === 0) ? embeds.length - 1 : currentPage - 1;
@@ -100,8 +97,8 @@ module.exports = {
                     await buttonInteraction.update({ embeds: [embeds[currentPage]] });
                 })
                 
+                // Disable buttons after timeout
                 collector.on('end', async () => {
-                    // Disable buttons after timeout
                     const disabledRow = new ActionRowBuilder()
                     .addComponents(
                         ...row.components.map(button =>

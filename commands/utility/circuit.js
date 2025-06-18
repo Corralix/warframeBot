@@ -1,15 +1,13 @@
 const fetchData = require("../../modules/webSnatcher.js");
-const {
-    AttachmentBuilder,
-    SlashCommandBuilder,
-    EmbedBuilder,
-} = require("discord.js");
+const { AttachmentBuilder, SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
 
 const commandDetails = {
     commandName: "circuit",
-    description:
-        "Displays this week's circuit rotation and the current emotion",
+    description: "Displays this week's circuit rotation and the current emotion",
+    iconPath: "DUVIRI.png"
 };
+
+const icon = new AttachmentBuilder(`assets/icons/${commandDetails.iconPath}`);
 
 const warframeRotations = {
     1: ["Excalibur", "Trinity", "Ember"],
@@ -39,7 +37,12 @@ const weaponRotations = {
 module.exports = {
     data: new SlashCommandBuilder()
         .setName(commandDetails.commandName)
-        .setDescription(commandDetails.description),
+        .setDescription(commandDetails.description)
+        .addStringOption(option => 
+            option.setName("target")
+                .setDescription("The desired weapon/warframe")
+                .setRequired(false)
+        ),
 
     async execute(interaction) {
         fetchData("https://oracle.browse.wf/worldState.json")
@@ -47,49 +50,73 @@ module.exports = {
                 let currentWarframes = data["EndlessXpChoices"]["0"]["Choices"];
                 let currentWeapons = data["EndlessXpChoices"]["1"]["Choices"];
 
-                function fieldGenerator(wfRot, wpRot) {
+                function currentField(wfRot, wpRot) {
                     let output = [];
 
-                    if (wfRot instanceof Array) {
-                        let frames = "| ";
-                        wfRot.forEach(element => {
-                            frames += element + " | ";
-                        });
+                    let framesTemp = "";
+                    wfRot.forEach((element, i) => {
+                        framesTemp += i === wfRot.length-1 ? element : element + " | ";
+                    });
 
-                        let weapons = "| ";
-                        wpRot.forEach(element => {
-                            weapons += element + " | ";
-                        });
+                    let weaponsTemp = "";
+                    wpRot.forEach((element, i) => {
+                        weaponsTemp += i === wpRot.length-1 ? element : element + " | ";
+                    });
 
-                        let framesTemp = { name: "Warframes", value: frames };
-                        let weaponsTemp = { name: "Incarnons", value: weapons };
+                    let frames = { name: "Warframes", value: framesTemp };
+                    let weapons = { name: "Incarnons", value: weaponsTemp };
 
-                        output.push(framesTemp);
-                        output.push(weaponsTemp);
-                    } else {
-                        for (let i = 1; i < Object.keys(wfRot).length; i++) {
-                            let weekResults = wfRot[i];
+                    output.push(frames);
+                    output.push(weapons);
+                    return output;
+                }
+
+                function rotationField(rot) {
+                    let output = [];
+                    if (rot[1]) {
+                        for (let i = 1; i <= Object.keys(rot).length; i++) {
+                            let weekResults = rot[i];
                             let temp = { name: `Week ${i}`, value: `${weekResults[0]} | ${weekResults[1]} | ${weekResults[2]}` };
                             output.push(temp);
                         }
-
-                        for (let i = 0; i < Object.keys(wpRot).length; i++) {
+                    } else {
+                        for (let i = 0; i < Object.keys(rot).length; i++) {
                             let rotationKey = String.fromCharCode(65+i);
-                            let weekResults = wpRot[rotationKey];
+                            let weekResults = rot[rotationKey];
                             let temp = { name: `Rotation ${rotationKey}`, value: `${weekResults[0]} | ${weekResults[1]} | ${weekResults[2]} | ${weekResults[3]} | ${weekResults[4]}` }
                             output.push(temp);
                         }
                     }
                     return output;
                 }
-                // TODO: INCORPORATE BUTTONS TO SEPARATE WARFRAMES AND WEAPONS
-                const allRotations = new EmbedBuilder()
+
+                // Setting interact buttons
+                const prev = new ButtonBuilder()
+                    .setCustomId("prev")
+                    .setLabel("\u25C4")
+                    .setStyle(ButtonStyle.Primary);
+                const next = new ButtonBuilder()
+                    .setCustomId("next")
+                    .setLabel("\u25BA")
+                    .setStyle(ButtonStyle.Primary);
+                const row = new ActionRowBuilder()
+                    .addComponents(prev, next);
+                
+                const allFrames = new EmbedBuilder()
                                     .setColor(0x0099ff)
-                                    .setTitle("ALL ROTATIONS")
+                                    .setTitle("WARFRAME ROTATIONS")
                                     .setAuthor({ name: "The Circuit", url: "https://oracle.browse.wf/" })
-                                    .addFields(
-                                        fieldGenerator(warframeRotations, weaponRotations)
-                                    )
+                                    .setThumbnail(`attachment://${commandDetails.iconPath}`)
+                                    .addFields(rotationField(warframeRotations))
+                                    .setFooter({ text: "Lilypad 🧑‍🌾"})
+                                    .setTimestamp();
+
+                const allWeapons = new EmbedBuilder()
+                                    .setColor(0x0099ff)
+                                    .setTitle("INCARNON ROTATIONS")
+                                    .setAuthor({ name: "The Circuit", url: "https://oracle.browse.wf/" })
+                                    .setThumbnail(`attachment://${commandDetails.iconPath}`)
+                                    .addFields(rotationField(weaponRotations))
                                     .setFooter({ text: "Lilypad 🧑‍🌾"})
                                     .setTimestamp();
                 
@@ -97,20 +124,48 @@ module.exports = {
                                     .setColor(0x1cd41c)
                                     .setTitle("CURRENT ROTATION")
                                     .setAuthor({ name: "The Circuit", url: "https://oracle.browse.wf/" })
-                                    .addFields(
-                                        fieldGenerator(currentWarframes, currentWeapons)
-                                    )
+                                    .setThumbnail(`attachment://${commandDetails.iconPath}`)
+                                    .addFields(currentField(currentWarframes, currentWeapons))
                                     .setFooter({ text: "Lilypad 🧑‍🌾"})
                                     .setTimestamp();
                                     
             
-            interaction.reply({ embeds: [allRotations, currentRotation] });
+            interaction.reply({ embeds: [currentRotation], files: [icon], components: [row] });
+
+            // Button interactions
+            (async () => {
+                const message = await interaction.fetchReply();
+                const embeds = [currentRotation, allWeapons, allFrames];
+                let currentPage = 0;
+                
+                const collector = message.createMessageComponentCollector({ time: 120_000 });
+
+                // Listen for button interactions
+                collector.on("collect", async(buttonInteraction) => {
+                    if (buttonInteraction.customId === 'prev') {
+                        currentPage = (currentPage === 0) ? embeds.length - 1 : currentPage - 1;
+                    } else if (buttonInteraction.customId === 'next') {
+                        currentPage = (currentPage + 1) % embeds.length;
+                    }
+                    
+                    await buttonInteraction.update({ embeds: [embeds[currentPage]] });
+                })
+                
+                // Disable buttons after timeout
+                collector.on('end', async () => {
+                    const disabledRow = new ActionRowBuilder()
+                    .addComponents(
+                        ...row.components.map(button =>
+                        ButtonBuilder.from(button).setDisabled(true)
+                        )
+                    );
+
+                    await interaction.editReply({ components: [disabledRow] });
+                });
+            })();
             })
             .catch((error) => {
-                console.error(
-                    "There was a problem with the fetch operation:",
-                    error
-                );
+                console.error("There was a problem with the fetch operation:", error);
             });
     },
 };
