@@ -68,7 +68,6 @@ A Discord bot designed to provide Warframe players with real-time information ab
 
 ## TODO
 
-- Incorporate an optional "weapon/frame" argument to `circuit` command to inform users when that rotation will be available.
 - Add a clock to `worldcycle` command to alert (@customrole) users of rarer times (eg. night on Cetus)
 - Add an alert (@customrole) to invasions so users know when there are good invasions (eg. orokin potatoes) 
 - Buttons for `spfissures` and probably `fissures` and figure out how to dynamically create buttons (pref 1 page, only make 2 if too long)
