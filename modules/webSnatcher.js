@@ -1,3 +1,4 @@
+// Using https://api.warframestat.us/PC/ and https://oracle.browse.wf/ APIs
 async function fetchData(url) {
     const response = await fetch(url);
     if (!response.ok) {
@@ -5,5 +6,5 @@ async function fetchData(url) {
     }
     return response.json();
 }
-
+// fetchData("").then(result => console.log(result))
 module.exports = fetchData;

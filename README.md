@@ -15,13 +15,18 @@ A Discord bot designed to provide Warframe players with real-time information ab
 
 ### Utility Commands
 
-- `/fissures`: Displays current non-Steel Path fissures.
-- `/spfissures`: Displays current Steel Path fissures.
-- `/allfissures`: Displays all fissures, including Steel Path and non-Steel Path.
+- `/help`: Provides all current usable commands for the bot.
+- `/fissures`: Provides current non-Steel Path fissures.
+- `/spfissures`: Provides current Steel Path fissures.
+- `/allfissures`: Provides all fissures, including Steel Path and non-Steel Path.
 - `/zariman`: Provides Zariman bounty details.
 - `/cavia`: Provides Cavia bounty details.
 - `/hex`: Provides Hex bounty details.
 - `/archon`: Provides the week's Archon Hunt details.
+- `/deeparchimedea`: Provides the week's Deep Archimedea missions and modifiers, Elite and Normal.
+- `/temporalarchimedea`: Provides the week's Temporal Archimedea missions and modifiers, Elite and Normal.
+- `/circuit`: Provides the week's circuit rotation as well as the entire list.
+- `/worldcyle`: Provides the current day cycles of all open worlds (PoE, Orb Vallis, Cambion Drift, and Earth)
 
 ## How to run/test
 
@@ -56,14 +61,13 @@ A Discord bot designed to provide Warframe players with real-time information ab
 
 ## Planned Features
 
-- **Circuit Tracking**: Displays progress for both Steel Path and Normal Circuits. (In EndlessXpChoices WorldState JSON)
 - **Alerts**: Notifications for Gift of the Lotus alerts and other time-sensitive events.
-- **Environments** (Earth: Night/Day, PoE: Night/Day, etc)
 - **Void Storms** (is in VoidStorms WorldState JSON)
 - Baro Ki'Teer (next visit and items)
-- EDA and ETA (Missions and debuffs)
 - Teshin (Weekly item)
 
 ## TODO
 
-- Fix `allfisurres` command so that it uses arrows/pages to combat max embed char limit
+- Incorporate an optional "weapon/frame" argument to `circuit` command to inform users when that rotation will be available.
+- Add a clock to `worldcycle` command to alert (@customrole) users of rarer times (eg. night on Cetus)
+- Add an alert (@customrole) to invasions so users know when there are good invasions (eg. orokin potatoes) 
