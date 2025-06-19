@@ -8,7 +8,7 @@ const getFissures = require('../../modules/getFissures.js');
 
 const commandDetails = {
     commandName: 'spfissures',
-    description: 'Get the current Steel Path fissures.',
+    description: 'Get the current Steel Path fissures',
     iconPath: "STEEL_PATH.png",
     difficulty: "STEEL PATH"
 };

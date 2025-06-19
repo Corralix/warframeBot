@@ -3,7 +3,7 @@ const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
 const commandDetails = {
     commandName: 'worldcycle',
-    description: 'Displays the current cycles of the open worlds.',
+    description: 'Displays the current cycles of the open worlds',
 };
 
 module.exports = {

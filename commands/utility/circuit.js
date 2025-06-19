@@ -3,7 +3,7 @@ const { AttachmentBuilder, SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, 
 
 const commandDetails = {
     commandName: "circuit",
-    description: "Displays this week's circuit rotation and the current emotion",
+    description: "Displays this week's circuit rotation",
     iconPath: "DUVIRI.png"
 };
 

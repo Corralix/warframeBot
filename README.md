@@ -26,6 +26,7 @@ A Discord bot designed to provide Warframe players with real-time information ab
 - `/deeparchimedea`: Provides the week's Deep Archimedea missions and modifiers, Elite and Normal.
 - `/temporalarchimedea`: Provides the week's Temporal Archimedea missions and modifiers, Elite and Normal.
 - `/circuit`: Provides the week's circuit rotation as well as the entire list.
+   - `/target` is an optional argument to look for specific circuit reward.
 - `/worldcyle`: Provides the current day cycles of all open worlds (PoE, Orb Vallis, Cambion Drift, and Earth)
 
 ## How to run/test
