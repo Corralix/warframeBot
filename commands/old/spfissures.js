@@ -1,21 +1,16 @@
-const fetchData = require('../../modules/webSnatcher.js');
+require('module-alias/register');
 const { AttachmentBuilder, SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const MissionDetails = require('../../json/MissionDetails.json');
-const wfDict = require('../../json/wfDict.json');
-const fs = require('node:fs');
-const path = require('node:path');
-const getFissures = require('../../modules/getFissures.js');
+const getFissures = require('@modules/getFissures.js');
 
 const commandDetails = {
-    commandName: 'fissures',
-    description: 'Get the current non Steel Path fissures',
-    iconPath: "NORMAL_PATH.png",
-    difficulty: "NORMAL"
+    commandName: 'spfissures',
+    description: 'Get the current Steel Path fissures',
+    iconPath: "STEEL_PATH.png",
+    difficulty: "STEEL PATH"
 };
 
 const authorIcon = new AttachmentBuilder(`assets/icons/${commandDetails.iconPath}`);
 const voidIcon = new AttachmentBuilder(`assets/icons/VOID_TRACES.png`);
-
 
 module.exports = {
     data: new SlashCommandBuilder()

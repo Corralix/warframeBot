@@ -1,8 +1,9 @@
-const fetchData = require('../../modules/webSnatcher.js');
+require('module-alias/register');
 const { AttachmentBuilder, SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const MissionDetails = require('../../json/MissionDetails.json');
-const Challenges = require('../../json/ExportChallenges.json');
-const wfDict = require('../../json/wfDict.json');
+const fetchData = require('@modules/webSnatcher.js');
+const MissionDetails = require('@json/MissionDetails.json');
+const Challenges = require('@json/ExportChallenges.json');
+const wfDict = require('@json/wfDict.json');
 
 const commandDetails = {
     commandName: "cavia",

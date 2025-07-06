@@ -1,5 +1,6 @@
+require('module-alias/register');
 const { AttachmentBuilder, SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
-const getInvasions = require('../../modules/getInvasions.js');
+const getInvasions = require('@modules/getInvasions.js');
 
 const commandDetails = {
     commandName: "invasions",

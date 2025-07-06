@@ -1,5 +1,6 @@
+require('module-alias/register');
 const { SlashCommandBuilder, PermissionsBitField } = require('discord.js');
-const Server = require('../../models/server.js');
+const Server = require('@models/server.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()

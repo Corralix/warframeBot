@@ -1,9 +1,10 @@
-const fetchData = require('./webSnatcher.js');
-const MissionDetails = require('../json/MissionDetails.json');
-const wfDict = require('../json/wfDict.json');
-const ExportRecipes = require('../json/ExportRecipes.json');
-const ExportWeapons = require('../json/ExportWeapons.json');
-const ExportResources = require('../json/ExportResources.json');
+require('module-alias/register');
+const fetchData = require('@modules/webSnatcher.js');
+const MissionDetails = require('@json/MissionDetails.json');
+const wfDict = require('@json/wfDict.json');
+const ExportRecipes = require('@json/ExportRecipes.json');
+const ExportWeapons = require('@json/ExportWeapons.json');
+const ExportResources = require('@json/ExportResources.json');
 
 function getInvasions() {
     return fetchData('https://oracle.browse.wf/invasions')

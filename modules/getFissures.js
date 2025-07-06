@@ -1,5 +1,6 @@
-const fetchData = require('./webSnatcher.js');
-const MissionDetails = require('../json/MissionDetails.json');
+require('module-alias/register');
+const fetchData = require('@modules/webSnatcher.js');
+const MissionDetails = require('@json/MissionDetails.json');
 
 const voidTiersDict = {
     "VoidT1": "Lith",

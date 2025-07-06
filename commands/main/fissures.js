@@ -1,9 +1,10 @@
+require('module-alias/register');
 const { AttachmentBuilder, SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
-const getFissures = require('../../modules/getFissures.js');
+const getFissures = require('@modules/getFissures.js');
 
 const commandDetails = {
-    commandName: 'allfissures',
-    description: 'Get all the current fissures.',
+    commandName: 'fissures',
+    description: 'Get all of the current fissures.',
     iconPath: "LOTUS.png",
     difficulty: "ALL"
 };

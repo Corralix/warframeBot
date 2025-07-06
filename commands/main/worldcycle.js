@@ -1,5 +1,6 @@
-const fetchData = require('../../modules/webSnatcher.js');
+require('module-alias/register');
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const fetchData = require('@modules/webSnatcher.js');
 
 const commandDetails = {
     commandName: 'worldcycle',

@@ -1,7 +1,8 @@
-const fetchData = require('../../modules/webSnatcher.js');
+require('module-alias/register');
 const { AttachmentBuilder, SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const MissionDetails = require('../../json/MissionDetails.json');
-const MissionTypes = require('../../json/MissionTypes.json');
+const fetchData = require('@modules/webSnatcher.js');
+const MissionDetails = require('@json/MissionDetails.json');
+const MissionTypes = require('@json/MissionTypes.json');
 
 const commandDetails = {
     commandName: 'archon',

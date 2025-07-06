@@ -1,19 +1,19 @@
-const fetchData = require('../../modules/webSnatcher.js');
+require('module-alias/register');
 const { AttachmentBuilder, SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const wfConditionsDict = require('../../json/wfConditionsDict.json');
+const fetchData = require('@modules/webSnatcher.js');
+const wfConditionsDict = require('@json/wfConditionsDict.json');
 
 const commandDetails = {
-    commandName: "deeparchimedea",
-    description: "Displays this week's EDA/DA missions and modifiers",
+    commandName: "temporalarchimedea",
+    description: "Displays this week's ETA/TA missions and modifiers",
 }
 
 const translations = {
-    "DUALDEFENSE": "Mirror Defense",
-    "EXTERMINATE": "Exterminate",
-    "ALCHEMY": "Alchemy",
-    "ASSASSINATION": "Assassination",
     "SURVIVAL": "Survival",
-    "ARTIFACT": "Disruption"
+    "ENDLESSCAPTURE": "Legacyte Harvest",
+    "DEFENSE": "Stage Defense",
+    "EXTERMINATE": "Exterminate",
+    "ASSASSINATION": "Assassination"
 }
 
 module.exports = {
@@ -24,8 +24,8 @@ module.exports = {
     async execute(interaction) {
         fetchData('https://oracle.browse.wf/weekly')
         .then(data => {
-
-            let edaData = data["labConquestMissions"];
+            
+            let etaData = data["hexConquestMissions"];
             let missions = [];
             let modifiers = [];
             let variants = [];
@@ -35,26 +35,26 @@ module.exports = {
                     str.replace(/([a-z])([A-Z])/g, '$1 $2') // Insert space between lower and uppercase
                     .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2')); // Handle cases like "HTMLParser"
                 }
-            let debuffs = pascalToSpaced(data["labConquestFrameVariables"]);
+            let debuffs = pascalToSpaced(data["hexConquestFrameVariables"]);
 
 
-            for (let i = 0; i < edaData.length; i++) {
-                variants.push(edaData[i]["variant"]);
-                modifiers.push(edaData[i]["conditions"]);
-                missions.push(edaData[i]["type"].toUpperCase());
+            for (let i = 0; i < etaData.length; i++) {
+                variants.push(etaData[i]["variant"]);
+                modifiers.push(etaData[i]["conditions"]);
+                missions.push(etaData[i]["type"].toUpperCase());
             }
-
+            
             let translatedMissions = [];
             for (let i = 0; i < missions.length; i++) {
-                    translatedMissions.push(translations[missions[i]]);
+                translatedMissions.push(translations[missions[i]]);
             }
-
+            
             let translatedVariants = [];
-            for (let i = 0; i < variants.length; i++) {
-                let tempVar = wfConditionsDict[`/Lotus/Language/Conquest/MissionVariant_LabConquest_${variants[i]}`];
-                translatedVariants.push(tempVar);
-            }
-
+                for (let i = 0; i < variants.length; i++) {
+                    let tempVar = wfConditionsDict[`/Lotus/Language/Conquest/MissionVariant_HexConquest_${variants[i]}`];
+                    translatedVariants.push(tempVar);
+                }
+    
             let translatedModifiers = [];
             for (let i = 0; i < modifiers.length; i++) {
                 let tempArr = [];
@@ -68,7 +68,7 @@ module.exports = {
             for (let i = 0; i < translatedVariants.length; i++) {
                 translatedModifiers[i].unshift(translatedVariants[i]);
             }
-
+            
             function fieldGenerator(missions, modifiers, debuffs) {
                 let output = [];
                 let rankEmoji = ["\u0031\uFE0F\u20E3", "\u0032\uFE0F\u20E3", "\u0033\uFE0F\u20E3", "\u0034\uFE0F\u20E3", "\u0035\uFE0F\u20E3", "\u0036\uFE0F\u20E3", "\u0037\uFE0F\u20E3", "\u0038\uFE0F\u20E3", "\u0039\uFE0F\u20E3"];
@@ -87,19 +87,19 @@ module.exports = {
                 return output;
             }
 
-            const caviaIcon = new AttachmentBuilder(`assets/icons/CAVIA.png`);
+            const hexIcon = new AttachmentBuilder(`assets/icons/HEX.png`);
 
             const exampleEmbed = new EmbedBuilder()
-                                    .setColor(0x0099ff)
-                                    .setTitle(`DEEP ARCHIMEDEA`)
-                                    .setAuthor({ name: "ELITE/NORMAL", iconURL: `attachment://CAVIA.png`, url: "https://oracle.browse.wf/" })
-                                    .addFields(
-                                        fieldGenerator(translatedMissions, translatedModifiers, debuffs)
-                                    )
-                                    .setFooter({ text: "Lilypad 🧑‍🌾"})
-                                    .setTimestamp();
+                .setColor(0x0099ff)
+                .setTitle(`DEEP ARCHIMEDEA`)
+                .setAuthor({ name: "ELITE/NORMAL", iconURL: `attachment://HEX.png`, url: "https://oracle.browse.wf/" })
+                .addFields(
+                    fieldGenerator(translatedMissions, translatedModifiers, debuffs)
+                )
+                .setFooter({ text: "Lilypad 🧑‍🌾"})
+                .setTimestamp();
             
-            interaction.reply({ embeds: [exampleEmbed], files: [caviaIcon] });
+            interaction.reply({ embeds: [exampleEmbed], files: [hexIcon] });
         }
         )
         .catch(error => {
