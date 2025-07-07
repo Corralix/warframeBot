@@ -18,8 +18,8 @@ module.exports = {
             \`archon\` returns this week's Archon Shard and the missions required.\n
             \`deeparchimedea\`, \`temporalarchimedea\` returns this week's missions, conditions and debuffs for those activities respectively.\n
             \`worldcycle\` returns the current states of Plains of Eidolon, Cambion Drift, Orb Vallis, and Earth (the planet).\n
-            \`circuit\` returns this week's circuit rotation as well as the entire list of rotations for warframes and incarnons.\n
-            > \`target\` is an optional argument to find out when the desired warframe/incarnon is coming back to rotation.
+            \`circuit\` returns this week's circuit rotation as well as the entire list of rotations for warframes and incarnons.
+            - \`target\` is an optional argument to find out when the desired warframe/incarnon is coming back to rotation.
             `));
 	},
 };

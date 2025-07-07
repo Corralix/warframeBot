@@ -1,6 +1,6 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const mongoose = require('mongoose');
-const Server = require('./models/server.js');
+const Server = require('./models/Server.js');
 
 const fs = require('node:fs');
 const path = require('node:path');

@@ -27,8 +27,8 @@ module.exports = {
                 if (result[i]) {
                     output += `__**${i}**__\n`;
                     for (let value of result[i]) {
-                        output += `${"\u2800".repeat(1)}**${value["MissionType"]}  (${value["Level"]})**\n`;
-                        output += `${"\u2800".repeat(1)}${value["Name"]}, ${value["Planet"]} | Expires <t:${value["Expiry"]}:R>\n\n`;
+                        output += `\u2800**${value["MissionType"]}  (${value["Level"]})**\n`;
+                        output += `\u2800${value["Name"]}, ${value["Planet"]} | Expires <t:${value["Expiry"]}:R>\n\n`;
                     }
                 }
             }
