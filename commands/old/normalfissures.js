@@ -3,7 +3,7 @@ const { AttachmentBuilder, SlashCommandBuilder, EmbedBuilder } = require("discor
 const getFissures = require('@modules/getFissures.js');
 
 const commandDetails = {
-    commandName: 'fissures',
+    commandName: 'normalfissures',
     description: 'Get the current non Steel Path fissures',
     iconPath: "NORMAL_PATH.png",
     difficulty: "NORMAL"

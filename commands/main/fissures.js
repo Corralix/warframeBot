@@ -22,8 +22,9 @@ module.exports = {
         
             let output = "";
             let output2 = "";
-            let eras = ["Lith", "Meso", "Neo"]
-            let eras2 = [ "Axi", "Requiem", "Omnia"]
+            let output3 = "";
+            let eras = ["Lith", "Meso", "Neo"];
+            let eras2 = [ "Axi", "Omnia"];
             
             // Lith, Meso, Neo output
             for (let i of eras) {
@@ -35,7 +36,7 @@ module.exports = {
                     }
                 }
             }
-            // Axi, Requiem, Omnia output
+            // Axi, Omnia output
             for (let i of eras2) {
                 if (result[i]) {
                     output2 += `__**${i}**__\n`;
@@ -45,7 +46,15 @@ module.exports = {
                     }
                 }
             }
-
+            // Requiem output
+            if (result["Requiem"]) {
+                output3 += `__**Requiem**__\n`;
+                for (let value of result["Requiem"]) {
+                    output3 += `\u2800**${value["MissionType"]}  (${value["Level"]})**\n`;
+                    output3 += `\u2800${value["Name"]}, ${value["Planet"]} | Expires <t:${value["Expiry"]}:R>\n\n`;
+                }
+            }
+            
             // Setting interact buttons
             const prev = new ButtonBuilder()
                 .setCustomId("prev")
@@ -77,12 +86,21 @@ module.exports = {
                 .setFooter({ text: "page 2 | Lilypad 🧑‍🌾"})
                 .setTimestamp();
 
+            const embed3 = new EmbedBuilder()
+                .setColor('#0099ff')
+                .setTitle("Current Fissures")
+                .setAuthor({ name: commandDetails.difficulty, iconURL: `attachment://${commandDetails.iconPath}`, url: "https://oracle.browse.wf/" })
+                .setThumbnail("attachment://VOID_TRACES.png")
+                .addFields({ name: "", value: output3 })
+                .setFooter({ text: "page 3 | Lilypad 🧑‍🌾"})
+                .setTimestamp();
+
             interaction.reply({ embeds: [embed1], files: [authorIcon, voidIcon], components: [row] });
 
             // Button interactions
             (async () => {
                 const message = await interaction.fetchReply();
-                const embeds = [embed1, embed2];
+                const embeds = [embed1, embed2, embed3];
                 let currentPage = 0;
                 
                 const collector = message.createMessageComponentCollector({ time: 120_000 });
