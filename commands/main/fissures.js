@@ -9,8 +9,8 @@ const commandDetails = {
     difficulty: "ALL"
 };
 
-const authorIcon = new AttachmentBuilder(`assets/icons/${commandDetails.iconPath}`);
-const voidIcon = new AttachmentBuilder(`assets/icons/VOID_TRACES.png`);
+const authorIcon = new AttachmentBuilder(`assets/icons/other/${commandDetails.iconPath}`);
+const voidIcon = new AttachmentBuilder(`assets/icons/loot/VOID_TRACES.png`);
 
 module.exports = {
     data: new SlashCommandBuilder()

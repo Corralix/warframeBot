@@ -212,7 +212,7 @@ module.exports = {
         await interaction.deferReply();
 
         // Create the icon attachment once, to be used in all replies.
-        const icon = new AttachmentBuilder(`assets/icons/${commandDetails.iconPath}`);
+        const icon = new AttachmentBuilder(`assets/icons/syndicates/${commandDetails.iconPath}`);
         const target = interaction.options.getString("target");
 
         // --- Logic for the 'target' option ---
