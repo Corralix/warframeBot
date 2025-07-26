@@ -88,7 +88,7 @@ module.exports = {
                 return output;
             }
 
-            const caviaIcon = new AttachmentBuilder(`assets/icons/CAVIA.png`);
+            const caviaIcon = new AttachmentBuilder(`assets/icons/syndicates/CAVIA.png`);
 
             const exampleEmbed = new EmbedBuilder()
                                     .setColor(0x0099ff)

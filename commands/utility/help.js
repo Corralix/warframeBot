@@ -20,6 +20,7 @@ module.exports = {
             \`worldcycle\` returns the current states of Plains of Eidolon, Cambion Drift, Orb Vallis, and Earth (the planet).\n
             \`circuit\` returns this week's circuit rotation as well as the entire list of rotations for warframes and incarnons.
             - \`target\` is an optional argument to find out when the desired warframe/incarnon is coming back to rotation.
+            \`arbitrations\` returns the current and next arbitration missions.
             `));
 	},
 };

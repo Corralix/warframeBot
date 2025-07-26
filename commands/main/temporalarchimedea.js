@@ -87,7 +87,7 @@ module.exports = {
                 return output;
             }
 
-            const hexIcon = new AttachmentBuilder(`assets/icons/HEX.png`);
+            const hexIcon = new AttachmentBuilder(`assets/icons/syndicates/HEX.png`);
 
             const exampleEmbed = new EmbedBuilder()
                 .setColor(0x0099ff)

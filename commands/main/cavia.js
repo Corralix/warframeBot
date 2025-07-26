@@ -47,8 +47,8 @@ module.exports = {
 
             }
 
-            const factionAttachment = new AttachmentBuilder(`assets/icons/MURMUR.png`);
-            const syndicateAttachment = new AttachmentBuilder(`assets/icons/${commandDetails.commandName.toUpperCase()}.png`);
+            const factionAttachment = new AttachmentBuilder(`assets/icons/factions/MURMUR.png`);
+            const syndicateAttachment = new AttachmentBuilder(`assets/icons/syndicates/${commandDetails.commandName.toUpperCase()}.png`);
             
             function fieldGenerator(nodeList, challengeList) {
                 let output = "";

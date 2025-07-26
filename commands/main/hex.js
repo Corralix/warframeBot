@@ -65,8 +65,8 @@ module.exports = {
             } else {
                 displayFaction = "SCALDRA";
             }
-            const factionAttachment = new AttachmentBuilder(`assets/icons/${displayFaction}.png`);
-            const syndicateAttachment = new AttachmentBuilder(`assets/icons/${commandDetails.commandName.toUpperCase()}.png`);
+            const factionAttachment = new AttachmentBuilder(`assets/icons/factions/${displayFaction}.png`);
+            const syndicateAttachment = new AttachmentBuilder(`assets/icons/syndicates/${commandDetails.commandName.toUpperCase()}.png`);
 
 
             function fieldGenerator(nodeList, challengeList) {
