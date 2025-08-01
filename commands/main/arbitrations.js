@@ -4,13 +4,22 @@ const MissionDetails = require("@json/MissionDetails.json");
 const Arbitration = require("@models/Arbitration.js");
 const fs = require("fs");
 const path = require("path");
-const arbiLogFilePath = path.resolve(__dirname, "../../assets/arbis.txt");
+const arbiLogFilePath = path.resolve(__dirname, "../../assets/arbitrations/arbis.txt");
+const arbiTiers = require("@assets/arbitrations/arbiTiers.json");
 
 const commandDetails = {
     commandName: "arbitrations",
     description: "Displays the current arbitration and following arbitration",
     thumbnailPath: "",
     factionPath: "",
+};
+
+const tierColours = {
+    S: 0x0099FF,
+    A: 0x00FF00,
+    B: 0xFFFF00,
+    C: 0xFF9000,
+    F: 0xFF0000,
 };
 
 function binarySearch(entries, targetTimestamp, startIndex = 0) {
@@ -56,7 +65,8 @@ module.exports = {
                         return {
                             time: parseInt(match[1], 10),
                             mission: `${translatedMission["Name"]}, ${translatedMission["Planet"]}`,
-                            faction: translatedMission["Enemy"]
+                            faction: translatedMission["Enemy"],
+                            tier: arbiTiers[translatedMission["Name"]]
                         };
                     })
                     .filter(Boolean); // Remove invalid lines
@@ -94,38 +104,49 @@ module.exports = {
             let endTime = next ? `<t:${next.time}:R>` : "Unknown";
             let faction = current.faction?.toUpperCase() || null;
             let factionPath = faction ? `assets/icons/factions/${faction}.png` : "";
+            let embedColour = tierColours[current.tier];
 
             const vitusIcon = new AttachmentBuilder(`assets/icons/loot/VITUS_ESSENCE.png`);
-            const factionIcon = new AttachmentBuilder(factionPath);
+            const currentFactionIcon = new AttachmentBuilder(factionPath);
+            let nextFactionIcon;
 
-            const embed = new EmbedBuilder()
-                            .setColor(0x0099ff)
-                            .setTitle("ARBITRATIONS")
+            const currentArbi = new EmbedBuilder()
+                            .setColor(embedColour)
+                            .setTitle("__Current Arbitration__")
                             .setAuthor({ name: "ARBITRATIONS", iconURL: `attachment://VITUS_ESSENCE.png`, url: "https://browse.wf/arbys.txt" })
                             .setThumbnail(`attachment://${faction}.png`)
                             .addFields(
                                 {
-                                    name: "__Current Arbitration__",
-                                    value: `**${current.mission}** (${current.faction})\n\u2800Expires ${endTime}`,
-                                    inline: true
+                                    name: "",
+                                    value: `**${current.mission}** (${current.faction})\n\u2800Expires ${endTime}\n\nTier: ${current.tier}`,
                                 }
                             )
-                            .setFooter({ text: "Lilypad 🧑‍🌾"})
+                            .setFooter({ text: "Lilypad 🧑‍🌾" })
                             .setTimestamp();
 
+            const nextArbi = new EmbedBuilder();
             if (next) {
-                embed.addFields(
+                embedColour = tierColours[next.tier];
+                if (current.faction !== next.faction) {
+                    faction = next.faction?.toUpperCase() || null;
+                    factionPath = faction ? `assets/icons/factions/${faction}.png` : "";
+                }
+                nextFactionIcon = new AttachmentBuilder(factionPath);
+
+                nextArbi.setColor(embedColour);
+                nextArbi.setThumbnail(`attachment://${faction}.png`);
+                nextArbi.setTitle("__Next Arbitration__")
+                nextArbi.addFields(
                     {
-                        name: "", value: "", inline: false
-                    },
-                    {
-                    name: "__Next Arbitration__",
-                    value: `**${next.mission}** (${next.faction})\n\u2800Starts at <t:${next.time}:t>`,
-                    inline: false
-                });
+                    name: "",
+                    value: `**${next.mission}** (${next.faction})\n\u2800Starts at <t:${next.time}:t>\n\nTier: ${next.tier}`,
+                    }
+                );
+                nextArbi.setFooter({ text: "Lilypad 🧑‍🌾" });
+                nextArbi.setTimestamp();
             }
 
-            await interaction.reply({ embeds: [embed], files: [vitusIcon, factionIcon] });
+            await interaction.reply({ embeds: [currentArbi, nextArbi], files: [vitusIcon, currentFactionIcon, nextFactionIcon] });
         } catch (error) {
             console.error("Something went wrong with the arbitration command:", error);
             await interaction.reply({

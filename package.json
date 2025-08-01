@@ -6,6 +6,7 @@
   "_moduleAliases": {
     "@modules": "modules",
     "@icons": "assets/icons",
+    "@assets": "assets",
     "@json": "json",
     "@models": "models"
   },
