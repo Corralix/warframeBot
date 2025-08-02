@@ -1,12 +1,12 @@
 {
     "Casta": "S",
     "Cinxia": "S",
+    "Seimini": "S",
 
     "Helene": "A",
     "Odin": "A",
     "Hydron": "A",
     "Sechura": "A",
-    "Seimini": "A",
 
     "Outer Terminus": "B",
     "Hyf": "B",
@@ -44,5 +44,19 @@
     "Romula": "F",
     "Kadesh": "F",
     "Coba": "F",
-    "Akkad": "F"
+    "Akkad": "F",
+    "Yursa": "F",
+    "Valefor": "F",
+    "Titan": "F",
+    "Memphis": "F",
+    "Nimus": "F",
+    "Tuvul Commons": "F",
+    "Cameria": "F",
+    "Terrorem": "F",
+    "Ani": "F",
+    "Piscinas": "F",
+    "Zeugma": "F",
+    "Apollo": "F",
+    "V Prime": "F",
+    "Gabii": "F"
 }

@@ -20,6 +20,7 @@ const tierColours = {
     B: 0xFFFF00,
     C: 0xFF9000,
     F: 0xFF0000,
+    UNKNOWN: 0xFF0000,
 };
 
 function binarySearch(entries, targetTimestamp, startIndex = 0) {
@@ -66,7 +67,7 @@ module.exports = {
                             time: parseInt(match[1], 10),
                             mission: `${translatedMission["Name"]}, ${translatedMission["Planet"]}`,
                             faction: translatedMission["Enemy"],
-                            tier: arbiTiers[translatedMission["Name"]]
+                            tier: arbiTiers[translatedMission["Name"]] || "UNKNOWN"
                         };
                     })
                     .filter(Boolean); // Remove invalid lines
