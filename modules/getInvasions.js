@@ -10,7 +10,6 @@ function getInvasions() {
     return fetchData('https://oracle.browse.wf/invasions')
         .then(data => {
             const allMissions = data["invasions"];
-            let invasionRefresh = data["expiry"];
             let output = {};
             let hasOrokin = false;
             allMissions.forEach(mission => {
