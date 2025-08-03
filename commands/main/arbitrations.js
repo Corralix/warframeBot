@@ -110,7 +110,7 @@ module.exports = {
 
             const vitusIcon = new AttachmentBuilder(`assets/icons/loot/VITUS_ESSENCE.png`);
             const currentFactionIcon = new AttachmentBuilder(factionPath);
-            let nextFactionIcon;
+            let nextFactionIcon = new AttachmentBuilder();
 
             const currentArbi = new EmbedBuilder()
                             .setColor(embedColour)
@@ -132,8 +132,8 @@ module.exports = {
                 if (current.faction !== next.faction) {
                     faction = Array.isArray(next.faction) ? next.faction[0] : next.faction.toUpperCase();
                     factionPath = faction ? `assets/icons/factions/${faction}.png` : "assets/icons/other/LOTUS.png";
+                    nextFactionIcon.setFile(factionPath);
                 }
-                nextFactionIcon = new AttachmentBuilder(factionPath);
 
                 nextArbi.setColor(embedColour);
                 nextArbi.setThumbnail(`attachment://${faction}.png`);

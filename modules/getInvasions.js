@@ -10,17 +10,21 @@ function getInvasions() {
     return fetchData('https://oracle.browse.wf/invasions')
         .then(data => {
             const allMissions = data["invasions"];
-            let invasionRefresh = data["expiry"];
             let output = {};
             let hasOrokin = false;
             allMissions.forEach(mission => {
                 let missionInternalName = mission["node"];
-                let missionType = mission["missions"][0];
+                let missionType = mission["missions"][1].replace(/([a-z])([A-Z])/g, '$1 $2'); // Separate capitalized letters like MobileDefense to Mobile Defense
+                // Not me hard-coding the translation of Territory to Interception
+                if (missionType === "Territory") {
+                    missionType = "Interception";
+                }
                 let rewardPath = mission["allyPay"][0]["ItemType"];
                 let rewardCount = mission["allyPay"][0]["ItemCount"];
 
                 let rawReward = "";
                 let missionReward = "";
+                // Translating raw reward paths to actual in-game item rewards
                 if (ExportRecipes[rewardPath]) {
                     rawReward = ExportRecipes[rewardPath]["resultType"];
                     weaponReward = ExportWeapons[rawReward]["name"];
@@ -46,7 +50,7 @@ function getInvasions() {
                     "Name": missionName,
                     "Type": missionType,
                     "Reward": missionReward,
-                    "temp": rewardPath,
+                    "RewardPath": rewardPath,
                     "Planet": missionPlanet,
                     "RewardCount": rewardCount
                 }
