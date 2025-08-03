@@ -2,20 +2,9 @@
 
 A Discord bot designed to provide Warframe players with real-time information about missions, bounties, fissures, and other in-game events.
 
-## Features
 
-- **Mission Tracking**: Provides details about active missions, including fissures, invasions, and bounties.
-- **Bounty Information**: Displays current bounties for factions like Zariman, Cavia, and Hex.
-- **Fissure Updates**: Tracks both Steel Path and normal Void Fissures.
-- **Invasion Alerts**: Fetches and displays active invasions with rewards.
+### Main Commands
 
-### Commands
-
-- `/setinvasionchannel`: Sets the channel for invasion updates.
-
-### Utility Commands
-
-- `/help`: Provides all current usable commands for the bot.
 - `/fissures`: Provides current non-Steel Path fissures.
 - `/spfissures`: Provides current Steel Path fissures.
 - `/allfissures`: Provides all fissures, including Steel Path and non-Steel Path.
@@ -30,36 +19,10 @@ A Discord bot designed to provide Warframe players with real-time information ab
 - `/worldcyle`: Provides the current day cycles of all open worlds (PoE, Orb Vallis, Cambion Drift, and Earth).
 - `/arbitrations`: Provides the current and next arbitration missions.
 
-## How to run/test
+### Utility Commands
 
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/yourusername/warframeBot.git
-   ```
-
-2. Edit the `config.json` file with your Discord bot token and other settings
-
-3. Install the required packages:
-
-   ```bash
-   npm install discord.js
-   ```
-
-4. Deploy commands to your server:
-
-   ```bash
-   node deploy-commands.js
-   ```
-
-5. Start the bot:
-   ```bash
-    node index.js
-   ```
-
-### Packages required
-
-- discord.js
+- `/help`: Provides all current usable commands for the bot.
+- `/setinvasionchannel`: Sets the channel for invasion updates.
 
 ## Planned Features
 
@@ -68,8 +31,5 @@ A Discord bot designed to provide Warframe players with real-time information ab
 - Baro Ki'Teer (next visit and items)
 - Teshin (Weekly item)
 
-## TODO
-
 - Add a clock to `worldcycle` command to alert (@customrole) users of rarer times (eg. night on Cetus)
-- Add an alert (@customrole) to invasions so users know when there are good invasions (eg. orokin potatoes) 
-- Buttons for `spfissures` and probably `fissures` and figure out how to dynamically create buttons (pref 1 page, only make 2 if too long)
+- Add an alert (@customrole) to invasions so users know when there are good invasions (eg. orokin potatoes)

@@ -66,6 +66,7 @@ module.exports = {
                         return {
                             time: parseInt(match[1], 10),
                             mission: `${translatedMission["Name"]}, ${translatedMission["Planet"]}`,
+                            type: translatedMission["Type"],
                             faction: translatedMission["Enemy"],
                             tier: arbiTiers[translatedMission["Name"]] || "UNKNOWN"
                         };
@@ -103,8 +104,8 @@ module.exports = {
 
             // Build embed
             let endTime = next ? `<t:${next.time}:R>` : "Unknown";
-            let faction = current.faction?.toUpperCase() || null;
-            let factionPath = faction ? `assets/icons/factions/${faction}.png` : "";
+            let faction = Array.isArray(current.faction) ? current.faction[0] : current.faction.toUpperCase();
+            let factionPath = faction ? `assets/icons/factions/${faction}.png` : "assets/icons/other/LOTUS.png";
             let embedColour = tierColours[current.tier];
 
             const vitusIcon = new AttachmentBuilder(`assets/icons/loot/VITUS_ESSENCE.png`);
@@ -119,7 +120,7 @@ module.exports = {
                             .addFields(
                                 {
                                     name: "",
-                                    value: `**${current.mission}** (${current.faction})\n\u2800Expires ${endTime}\n\nTier: ${current.tier}`,
+                                    value: `**${current.mission}** (${current.type})\nExpires ${endTime}\nTier: ${current.tier}`,
                                 }
                             )
                             .setFooter({ text: "Lilypad 🧑‍🌾" })
@@ -129,8 +130,8 @@ module.exports = {
             if (next) {
                 embedColour = tierColours[next.tier];
                 if (current.faction !== next.faction) {
-                    faction = next.faction?.toUpperCase() || null;
-                    factionPath = faction ? `assets/icons/factions/${faction}.png` : "";
+                    faction = Array.isArray(next.faction) ? next.faction[0] : next.faction.toUpperCase();
+                    factionPath = faction ? `assets/icons/factions/${faction}.png` : "assets/icons/other/LOTUS.png";
                 }
                 nextFactionIcon = new AttachmentBuilder(factionPath);
 
@@ -140,7 +141,7 @@ module.exports = {
                 nextArbi.addFields(
                     {
                     name: "",
-                    value: `**${next.mission}** (${next.faction})\n\u2800Starts at <t:${next.time}:t>\n\nTier: ${next.tier}`,
+                    value: `**${next.mission}** (${next.type})\nStarts at <t:${next.time}:t>\nTier: ${next.tier}`,
                     }
                 );
                 nextArbi.setFooter({ text: "Lilypad 🧑‍🌾" });
