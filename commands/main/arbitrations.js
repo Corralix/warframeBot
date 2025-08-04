@@ -103,20 +103,21 @@ module.exports = {
             await state.save();
 
             // Build embed
+            const vitusIcon = new AttachmentBuilder(`assets/icons/loot/VITUS_ESSENCE.png`);
             let endTime = next ? `<t:${next.time}:R>` : "Unknown";
+            let embedColour = tierColours[current.tier];
+            
             let faction = Array.isArray(current.faction) ? current.faction[0] : current.faction.toUpperCase();
             let factionPath = faction ? `assets/icons/factions/${faction}.png` : "assets/icons/other/LOTUS.png";
-            let embedColour = tierColours[current.tier];
-
-            const vitusIcon = new AttachmentBuilder(`assets/icons/loot/VITUS_ESSENCE.png`);
-            const currentFactionIcon = new AttachmentBuilder(factionPath);
-            let nextFactionIcon = new AttachmentBuilder();
+            let currentFactionIconName = `current_${faction}.png`; // Unique filename so discordjs doesn't think both icons point to one therefore creating a duplicate which prints out as img on Discord
+            const currentFactionIcon = new AttachmentBuilder(factionPath).setName(currentFactionIconName);
+            let nextFactionIcon = null;
 
             const currentArbi = new EmbedBuilder()
                             .setColor(embedColour)
                             .setTitle("__Current Arbitration__")
                             .setAuthor({ name: "ARBITRATIONS", iconURL: `attachment://VITUS_ESSENCE.png`, url: "https://browse.wf/arbys.txt" })
-                            .setThumbnail(`attachment://${faction}.png`)
+                            .setThumbnail(`attachment://${currentFactionIconName}`)
                             .addFields(
                                 {
                                     name: "",
@@ -130,25 +131,23 @@ module.exports = {
             if (next) {
                 embedColour = tierColours[next.tier];
                 if (current.faction !== next.faction) {
-                    faction = Array.isArray(next.faction) ? next.faction[0] : next.faction.toUpperCase();
+                    faction = Array.isArray(next.faction) ? next.faction[0].toUpperCase() : next.faction.toUpperCase();
                     factionPath = faction ? `assets/icons/factions/${faction}.png` : "assets/icons/other/LOTUS.png";
-                    nextFactionIcon.setFile(factionPath);
                 }
+                const nextFactionIconName = `next_${faction}.png`; // Unique filename so discordjs doesn't think both icons point to one therefore creating a duplicate which prints out as img on Discord
+                nextFactionIcon = new AttachmentBuilder(factionPath).setName(nextFactionIconName);
 
-                nextArbi.setColor(embedColour);
-                nextArbi.setThumbnail(`attachment://${faction}.png`);
-                nextArbi.setTitle("__Next Arbitration__")
-                nextArbi.addFields(
-                    {
-                    name: "",
-                    value: `**${next.mission}** (${next.type})\nStarts at <t:${next.time}:t>\nTier: ${next.tier}`,
-                    }
-                );
-                nextArbi.setFooter({ text: "Lilypad 🧑‍🌾" });
-                nextArbi.setTimestamp();
+                    nextArbi.setColor(tierColours[next.tier])
+                            .setTitle("__Next Arbitration__")
+                            .setThumbnail(`attachment://${nextFactionIconName}`)
+                            .addFields({ name: "", value: `**${next.mission}** (${next.type})\nStarts at <t:${next.time}:t>\nTier: ${next.tier}` })
+                            .setFooter({ text: "Lilypad 🧑‍🌾" })
+                            .setTimestamp();
             }
 
-            await interaction.reply({ embeds: [currentArbi, nextArbi], files: [vitusIcon, currentFactionIcon, nextFactionIcon] });
+            const fileArray = nextFactionIcon ? [vitusIcon, currentFactionIcon, nextFactionIcon] : [vitusIcon, currentFactionIcon];
+
+            await interaction.reply({ embeds: [currentArbi, nextArbi], files: fileArray });
         } catch (error) {
             console.error("Something went wrong with the arbitration command:", error);
             await interaction.reply({
